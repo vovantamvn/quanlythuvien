@@ -1,1 +1,2 @@
-1,Vo Van Tam,vovantam,123
+1 1 1 25 6 1999vovantam,Vo Van Tam,1921682211,Quang Tri
+id/trang thai/gioi tinh/ngay/thang/nam/ten dang nhap/ho ten/cmnd/dia chi
