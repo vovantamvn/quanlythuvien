@@ -100,19 +100,22 @@ void dangXuat() {
 }
 
 //1.3 thay doi mat khau;
+//oke 
 void thaydoimatkhau(NhanVien &nv)
 {
     fflush(stdin);
     string mkmoi;
     string xtmkmoi;
     cout << "Nhap mat khau moi: ";
+    cin.ignore();
     getline(cin, mkmoi);
     cout << "Nhap lai mat khau moi: ";
     getline(cin, xtmkmoi);
 
-    if (mkmoi.compare(xtmkmoi))
+    if (mkmoi == xtmkmoi)
     {
         nv.matkhau = mkmoi;
+         cout << "Mat khau da doi thanh cong ! ";
     }
     else
     {
@@ -121,6 +124,7 @@ void thaydoimatkhau(NhanVien &nv)
 }
 
 // 1.4 cap  nhat nhan vien
+//oke 
 void capnhatnhanvien(NhanVien &nv)
 {
     cout << "Nhap lai thong tin nhan vien : ";
@@ -147,6 +151,7 @@ void capnhatnhanvien(NhanVien &nv)
 }
 
 //1.5 tao nguoi dung
+//oke
 NhanVien taonhanvien()
 {
     NhanVien nv;
@@ -164,13 +169,12 @@ NhanVien taonhanvien()
     cin >> nv.gioitinh;
     cout << "nhap ngay sinh: ";
     cin >> nv.ngaysinh.ngay;
-    cout << "nhap ngay sinh: ";
+    cout << "nhap thang sinh: ";
     cin >> nv.ngaysinh.thang;
     cout << "nhap nam sinh: ";
     cin >> nv.ngaysinh.nam;
     cout << "nhap tinh trang (0: block, 1: actived): ";
     cin >> nv.trangthai;
-    cout << "nhap ten nhan vien: ";
     return nv;
 }
 
@@ -195,16 +199,24 @@ void themNguoiDungVaoDau (NodeNhanVien *head, NhanVien &nv) {
 }
 
 // in thng tin ngay
+//oke
 void inThongTinNgay(string thongtin, Ngay ngay) {
     cout<<thongtin<<": "<<ngay.ngay<<"/"<<ngay.thang<<"/"<<ngay.nam<<endl;
 }
 
 // Xem thong tin doc gia
+//oke
 void inDocGia(DocGia dg) {
    cout << "Ma: " << dg.ma <<endl;
    cout << "Ho ten: "<<dg.hoten<<endl;
    cout<<"CMND: "<<dg.cmnd<<endl;
-   cout<< "Gioi tinh: " << (dg.gioitinh == 1)? "Nam\n" : "Nu\n";
+    cout<< "Gioi tinh: ";
+    if(dg.gioitinh==1){
+         cout<< "Nam " <<endl;
+    }
+    else{
+         cout<< "Nu " <<endl;
+    }
    cout<<"Email: "<<dg.email<<endl;
    cout<<"Dia chi: "<<dg.diachi<<endl;
 
@@ -226,6 +238,7 @@ void inDanhSachDocGia(NodeDocGia *head)
 }
 
 //2.2 them doc gia
+//oke
 DocGia themdocgia()
 {
     DocGia d;
@@ -236,13 +249,13 @@ DocGia themdocgia()
     getline(cin, d.hoten);
     cout << "nhap chung minh nhan dan :";
     getline(cin, d.cmnd);
-    cout << "nhap ngay sinh : " ;
+    cout << "nhap ngay sinh : ";
     cin >> d.ngaysinh.ngay;
-    cout << "nhap thang sinh : " ;
+    cout << "nhap thang sinh : ";
     cin >> d.ngaysinh.thang;
     cout << "nhap nam sinh : ";
     cin >> d.ngaysinh.nam;
-    cout << "nhap gioi tinh : ";
+    cout << "nhap gioi tinh (0: nu, 1: nam): ";
     cin >> d.gioitinh;
     cout << "nhap email : ";
     cin.ignore();
@@ -260,11 +273,13 @@ DocGia themdocgia()
     cout << "nhap thang het han : ";
     cin >> d.ngayhethan.thang;
     cout << "nhap nam het han : ";
-    cin >> d.ngayhethan.ngay;
+    cin >> d.ngayhethan.nam;
+   
     return d;
 }
 
 //2.3 sua thong tin doc gia
+//oke
 void suathongtindocgia(DocGia d)
 {
     cout << "Nhap lai thong tin doc gia  : ";
@@ -371,6 +386,7 @@ void xemSachTrongThuVien()
 }
 
 // 3.2 them sach
+// Oke
 Sach themsach()
 {
     Sach s;
@@ -414,9 +430,10 @@ void themSachVaoDauNode(Sach sach)
 }
 
 //3.3 chinh sua thong tin sach
+//oke
 void chinhsuathongtinsach(Sach &s)
 {
-    cout << "Nhap lai thong tin sach: " ;
+    cout << "Nhap lai thong tin sach: "<<endl;
     cout << "nhap ma sach: ";
     cin >>s.masach;
     cin.ignore();
@@ -453,7 +470,7 @@ void lapPhieuMuonSach()
 
 int main()
 {
-    docSachTuFile();
-    xemSachTrongThuVien();
+  DocGia dg= themdocgia();
+  inDocGia(dg);
 }
 /*-------------------------------------------------------*/
