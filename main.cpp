@@ -2,7 +2,9 @@
 #include "sach.h"
 #include "docgia.h"
 
+#include <stdio.h>
 #include <iostream>
+#include <fstream>
 #include <string>
 using namespace std;
 
@@ -13,6 +15,43 @@ NodeNhanVien  *headNhanVien = NULL;
 NhanVien *nhanVien = NULL;
 // Doc gia
 NodeDocGia *headDocGia = NULL;
+NodeSach *headSach = NULL;
+/*-------------------------------------------------------*/
+
+
+/*-------------------------------------------------------*/
+// Chuc nang phu
+void themSachVaoDauNode(Sach sach);
+void docSachTuFile()
+{
+    //mã sách, nam, giá sách, số quyển sách, tên sách, tác giả, nhà xuất bản, thể loại
+    //1 1997 200000 205De meo phieu luu ki,Ngo Bao Trung,Nha xuat ban puong duong,Sach giai
+    ifstream file("sach.txt");
+    while (!file.eof())
+    {
+        Sach sach;
+        file>>sach.masach;
+        file>>sach.namxuatban;
+        file>>sach.giasach;
+        file>>sach.soluong;
+        getline(file, sach.tensach, ',');
+        getline(file, sach.tacgia, ',');
+        getline(file, sach.nhasanxuat, ',');
+        getline(file, sach.theloai);
+
+        themSachVaoDauNode(sach);
+    }
+}
+
+void docDocGiaTuFile()
+{
+
+}
+
+void docNguoiDungTuFile()
+{
+
+}
 /*-------------------------------------------------------*/
 
 
@@ -187,7 +226,7 @@ void inDanhSachDocGia(NodeDocGia *head)
 }
 
 //2.2 them doc gia
-DocGia& themdocgia()
+DocGia themdocgia()
 {
     DocGia d;
     cout << "nhap ma :";
@@ -291,12 +330,47 @@ bool xoaDocGiaTheoId(NodeDocGia *head, int id) {
     return false;
 }
 
-// Chuc nang xoa thong tin doc gia
-void xoaThongTinDocGia() {
-
+// 2.5 Tim kiem doc gia theo CMND
+DocGia* timDocGiaTheoChungMinhNhanDan(string cmnd)
+{
+    NodeDocGia *point = headDocGia;
+    while (point != NULL)
+    {
+        if (point->data.cmnd == cmnd)
+        {
+            return &point->data;
+        }
+        
+        point = point->next;
+    }
+    
+    return NULL;
 }
 
-//3.2 them sach
+// 2.6 Tim kiem sach theo ho ten
+
+// 3.1 Xem danh sach cac sach trong thu vien
+// Oke
+void xemSachTrongThuVien()
+{
+    NodeSach *point = headSach;
+    //1 1997 200000 205De meo phieu luu ki 3,Ngo Bao Trung,Nha xuat ban puong duong,Sach toan
+    printf("%-10s %-30s %-20s %-20s %-10s\n", "Ma sach", "Ten sach", "Tac gia", "Nam xuat ban" , "So luong");
+    while (point != NULL)
+    {
+        Sach sach = point->data;
+        printf("%-10d %-30s %-20s %-20d %-10d\n", 
+            sach.masach, 
+            sach.tensach.c_str(),
+            sach.tacgia.c_str(),
+            sach.namxuatban,
+            sach.soluong);
+
+        point = point->next;
+    }
+}
+
+// 3.2 them sach
 Sach themsach()
 {
     Sach s;
@@ -320,6 +394,25 @@ Sach themsach()
     cin >> s.soluong;
     return s;
 }
+
+// 3.2 Them sach vao dau node
+void themSachVaoDauNode(Sach sach)
+{
+    NodeSach *node = new NodeSach();
+    node->data = sach;
+    node->next = NULL;
+
+    if (headSach == NULL)
+    {
+        headSach = node;
+    }
+    else
+    {
+        node->next = headSach;
+        headSach = node;   
+    }
+}
+
 //3.3 chinh sua thong tin sach
 void chinhsuathongtinsach(Sach &s)
 {
@@ -343,6 +436,14 @@ void chinhsuathongtinsach(Sach &s)
     cout << "nhap so luong: ";
     cin >> s.soluong;
 }
+
+// 4 Lap phieu muon sach
+void lapPhieuMuonSach()
+{
+
+}
+
+
 // Ket thuc cac chuc nang
 /*-------------------------------------------------------*/
 
@@ -352,6 +453,7 @@ void chinhsuathongtinsach(Sach &s)
 
 int main()
 {
-    taonhanvien();
+    docSachTuFile();
+    xemSachTrongThuVien();
 }
 /*-------------------------------------------------------*/
