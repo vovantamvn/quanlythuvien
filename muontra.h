@@ -7,6 +7,7 @@ using namespace std;
 typedef struct MuonTra
 {
     int madocgia;
+    int masach[10] = {0};
     Ngay ngaymuon;
     Ngay ngaytradukien;
     Ngay ngaytrathucte;

@@ -1,3 +1,3 @@
-1 1997 200000 205De meo phieu luu ki,Ngo Bao Trung,Nha xuat ban puong duong,Sach giai
-1 1997 200000 205De meo phieu luu ki 2,Ngo Bao Trung,Nha xuat ban puong duong,Sach van
-1 1997 200000 205De meo phieu luu ki 3,Ngo Bao Trung,Nha xuat ban puong duong,Sach toan
+1 1997 200000 5De meo phieu luu ki,Ngo Bao Trung,Nha xuat ban puong duong,Sach giai
+2 1997 200000 2De meo phieu luu ki 2,Ngo Bao Trung,Nha xuat ban puong duong,Sach van
+3 1997 200000 0De meo phieu luu ki 3,Ngo Bao Trung,Nha xuat ban puong duong,Sach toan

@@ -1,6 +1,7 @@
 #include "nhanvien.h"
 #include "sach.h"
 #include "docgia.h"
+#include "muontra.h"
 
 #include <stdio.h>
 #include <iostream>
@@ -22,6 +23,48 @@ NodeSach *headSach = NULL;
 /*-------------------------------------------------------*/
 // Chuc nang phu
 void themSachVaoDauNode(Sach sach);
+// oke
+void themDocGiaVaoDauNode(DocGia docgia)
+{
+    NodeDocGia *node = new NodeDocGia();
+    node->data = docgia;
+    node->next = NULL;
+
+    if (headDocGia == NULL)
+    {
+        headDocGia = node;
+    }
+    else
+    {
+        node->next = headDocGia;
+        headDocGia = node;
+    }
+}
+//oke
+void themNhanVienVaoDauNode(NhanVien nhanvien)
+{
+    NodeNhanVien *node = new NodeNhanVien();
+    node->data = nhanvien;
+    node->next = NULL;
+
+    if (headNhanVien == NULL)
+    {
+        headNhanVien = node;
+    }
+    else
+    {
+        node->next = headNhanVien;
+        headNhanVien = node;
+    }
+    
+}
+//oke
+void xoaManHinh()
+{
+    system("clear");
+    //system("cls");
+}
+//oke
 void docSachTuFile()
 {
     //mã sách, nam, giá sách, số quyển sách, tên sách, tác giả, nhà xuất bản, thể loại
@@ -41,6 +84,7 @@ void docSachTuFile()
 
         themSachVaoDauNode(sach);
     }
+    file.close();
 }
 
 void docDocGiaTuFile()
@@ -48,9 +92,37 @@ void docDocGiaTuFile()
 
 }
 
-void docNguoiDungTuFile()
+void xoaBoNhoDem()
 {
+    cout<<"Enter de tiep tuc!"<<endl;
+    cin.clear();
+    cin.ignore(INT32_MAX, '\n');
+}
+//oke
+void docNhanVienTuFile()
+{
+    //1 1 1 1 25 6 1999vovantam,Vo Van,1921682211,Hue
+    //id/role//trang thai/gioi tinh/ngay/thang/nam/ten dang nhap/ho ten/cmnd/dia chi
+    ifstream file("nhanvien.txt");
+    while (!file.eof())
+    {
+        NhanVien nv;
+        file>>nv.id;
+        file>>nv.loainguoidung;
+        file>>nv.trangthai;
+        file>>nv.gioitinh;
+        file>>nv.ngaysinh.ngay;
+        file>>nv.ngaysinh.thang;
+        file>>nv.ngaysinh.nam;
+        getline(file, nv.tendangnhap, ',');
+        getline(file, nv.matkhau, ',');
+        getline(file, nv.hoten, ',');
+        getline(file, nv.cmnd, ',');
+        getline(file, nv.diachi);
 
+        themNhanVienVaoDauNode(nv);
+    }
+    file.close();
 }
 /*-------------------------------------------------------*/
 
@@ -58,6 +130,7 @@ void docNguoiDungTuFile()
 /*-------------------------------------------------------*/
 // Chuc nang cua chuong trinh
 // 1.1 dang nhap
+//oke
 bool dangNhap(string tendangnhap, string matkhau) {
     NodeNhanVien *point = headNhanVien;
     while (point != NULL)
@@ -66,18 +139,18 @@ bool dangNhap(string tendangnhap, string matkhau) {
         {
             return true;
         }
-        
+        point = point->next;
     }
 
     return false;
 }
 
 // 1.1 chuc nang dang nhap
+//oke
 void chucNangDangNhap() {
     string tendangnhap;
     string matkhau;
-    // xoa bo nho dem
-    fflush(stdin);
+    
     cout<<"Nhap ten dang nhap: ";
     getline(cin, tendangnhap);
 
@@ -95,19 +168,19 @@ void chucNangDangNhap() {
 }
 
 // 1.2 dang xuat
+//oke
 void dangXuat() {
     nhanVien = NULL;
 }
 
 //1.3 thay doi mat khau;
 //oke 
+//update
 void thaydoimatkhau(NhanVien &nv)
 {
-    fflush(stdin);
     string mkmoi;
     string xtmkmoi;
     cout << "Nhap mat khau moi: ";
-    cin.ignore();
     getline(cin, mkmoi);
     cout << "Nhap lai mat khau moi: ";
     getline(cin, xtmkmoi);
@@ -115,7 +188,7 @@ void thaydoimatkhau(NhanVien &nv)
     if (mkmoi == xtmkmoi)
     {
         nv.matkhau = mkmoi;
-         cout << "Mat khau da doi thanh cong ! ";
+        cout << "Mat khau da doi thanh cong ! ";
     }
     else
     {
@@ -125,38 +198,37 @@ void thaydoimatkhau(NhanVien &nv)
 
 // 1.4 cap  nhat nhan vien
 //oke 
+//update
 void capnhatnhanvien(NhanVien &nv)
 {
     cout << "Nhap lai thong tin nhan vien : ";
     cout << "nhap ten dang nhap: ";
-    cin.ignore();
     getline(cin, nv.tendangnhap);
     cout << "nhap mat khau: ";
     getline(cin, nv.matkhau);
+    cout << "nhap chung minh nhan dan: ";
+    getline(cin, nv.cmnd);
+    cout << "nhap dia chi: ";
+    getline(cin, nv.diachi);
     cout << "nhap ngay sinh: ";
     cin >> nv.ngaysinh.ngay;
     cout << "Nhap thang sinh: " ;
     cin >> nv.ngaysinh.thang;
     cout << "Nhap nam sinh: ";
     cin >> nv.ngaysinh.nam;
-    cin.ignore();
-    cout << "nhap chung minh nhan dan: ";
-    getline(cin, nv.cmnd);
-    cout << "nhap dia chi: ";
-    getline(cin, nv.diachi);
     cout << "nhap gioi tinh:  ";
     cin >> nv.gioitinh;
     cout << "nhap tinh trang: ";
-    cin >> nv.trangthai;   
+    cin >> nv.trangthai;
+    
+    xoaBoNhoDem();
 }
 
 //1.5 tao nguoi dung
-//oke
+//update
 NhanVien taonhanvien()
 {
     NhanVien nv;
-    cout << "nhap id nhan vien: ";
-    cin >> nv.id;
     cout << "nhap ten dang nhap: ";
     getline(cin, nv.tendangnhap);
     cout << "nhap mat khau: ";
@@ -175,28 +247,30 @@ NhanVien taonhanvien()
     cin >> nv.ngaysinh.nam;
     cout << "nhap tinh trang (0: block, 1: actived): ";
     cin >> nv.trangthai;
+
+    xoaBoNhoDem();
     return nv;
 }
 
-
+// sap bo
 // 1.5 tao nguoi dung
 // them nguoi dung vao danh sach
-void themNguoiDungVaoDau (NodeNhanVien *head, NhanVien &nv) {
-    NodeNhanVien *node = new NodeNhanVien();
-    node->data = nv;
-    node->next = NULL;
+// void themNguoiDungVaoDau (NodeNhanVien *head, NhanVien &nv) {
+//     NodeNhanVien *node = new NodeNhanVien();
+//     node->data = nv;
+//     node->next = NULL;
 
-    // check head
-    if (head == NULL)
-    {
-        head = node;
-    }
-    else
-    {
-        node->next = head;
-        head = node;
-    }
-}
+//     // check head
+//     if (head == NULL)
+//     {
+//         head = node;
+//     }
+//     else
+//     {
+//         node->next = head;
+//         head = node;
+//     }
+// }
 
 // in thng tin ngay
 //oke
@@ -226,13 +300,17 @@ void inDocGia(DocGia dg) {
 }
 
 // 2.1 In danh sach doc gia
-void inDanhSachDocGia(NodeDocGia *head) 
+//oke
+void inDanhSachDocGia() 
 {
-    NodeDocGia *point = head;
-
+    NodeDocGia *point = headDocGia;
+    
     while (point != NULL)
     {
-        inDocGia(point->data);
+        if(point->data.gioitinh == 1){
+            inDocGia(point->data);
+        }
+        
         point = point->next;
     }    
 }
@@ -242,10 +320,7 @@ void inDanhSachDocGia(NodeDocGia *head)
 DocGia themdocgia()
 {
     DocGia d;
-    cout << "nhap ma :";
-    cin >> d.ma;
     cout << "nhap ten doc gia : ";
-    cin.ignore();
     getline(cin, d.hoten);
     cout << "nhap chung minh nhan dan :";
     getline(cin, d.cmnd);
@@ -275,18 +350,16 @@ DocGia themdocgia()
     cout << "nhap nam het han : ";
     cin >> d.ngayhethan.nam;
    
+    xoaBoNhoDem();
     return d;
 }
 
 //2.3 sua thong tin doc gia
 //oke
-void suathongtindocgia(DocGia d)
+void suathongtindocgia(DocGia &d)
 {
     cout << "Nhap lai thong tin doc gia  : ";
-    cout << "nhap ma  : ";
-    cin >> d.ma;
     cout << "nhap ten doc gia : ";
-    cin.ignore();
     getline(cin, d.hoten);
     cout << "nhap chung minh nhan dan  : ";
     getline(cin, d.cmnd);
@@ -362,7 +435,7 @@ DocGia* timDocGiaTheoChungMinhNhanDan(string cmnd)
     return NULL;
 }
 
-// 2.6 Tim kiem sach theo ho ten
+// 2.6 Tim kiem doc gia theo ho ten
 
 // 3.1 Xem danh sach cac sach trong thu vien
 // Oke
@@ -454,12 +527,112 @@ void chinhsuathongtinsach(Sach &s)
     cin >> s.soluong;
 }
 
-// 4 Lap phieu muon sach
-void lapPhieuMuonSach()
-{
+//3.4 Xóa thông tin sách
 
+
+//3.5 Tìm kiếm sách theo ISBN
+Sach* timSachTheoMa(int ma)
+{
+    NodeSach *point = headSach;
+    while (point != NULL)
+    {
+        if (point->data.masach == ma)
+        {
+            return &point->data;
+        }
+        
+        point = point->next;
+    }
+
+    return NULL;   
 }
 
+//3.6 Tìm kiếm sách theo tên sách
+Sach* timSachTheoTen(string ten)
+{
+    NodeSach *point = headSach;
+    while (point != NULL)
+    {
+        if (point->data.tensach == ten)
+        {
+            return &point->data;
+        }
+        
+        point = point->next;
+    }
+
+    return NULL;   
+}
+
+// 4 Lap phieu muon sach
+bool muonSach(int masach);
+void lapPhieuMuonSach()
+{
+    /*
+    Mỗi phiếu mượn/trả sách chứa thông tin về mã độc giả, ngày mượn, ngày trả dự kiến,
+    ngày trả thực tế và danh sách ISBN của các sách được mượn.
+    */
+
+    inDanhSachDocGia();   
+    MuonTra muon;
+    cout<<"Nhap ma doc gia: ";
+    cin>>muon.madocgia;
+    
+    for(int i=0; i<10;)
+    {
+        xemSachTrongThuVien();
+        cout<<"Nhap ma sach thu " << i + 1 << " (Nhap 0 de ket thuc): ";
+        int masach;
+        cin>>masach;
+        
+        if (masach == 0)
+        {
+            break;
+        }
+
+        if(muonSach(masach))
+        {
+            muon.masach[i] = masach;
+            i++;
+        }
+        else
+        {
+            cout<<"Sach da het hoac khong ton tai!"<<endl;
+        }
+        
+    }
+    
+    cout<<"Nhap ngay muon (dd mm yyyy): ";
+    cin>>muon.ngaymuon.ngay>>muon.ngaymuon.thang>>muon.ngaymuon.nam;
+    cout<<"Ngay tra du kiem (dd mm yyyy): ";
+    cin>>muon.ngaytradukien.ngay>>muon.ngaytradukien.thang>>muon.ngaytradukien.nam;
+}
+
+// Kiem tra xem ma sach co hop le hoac so luong sach van con
+bool muonSach(int masach)
+{
+    Sach *sach = timSachTheoMa(masach);
+    if (sach == NULL)
+    {
+        return false;
+    }
+    
+    if (sach->soluong <= 0)
+    {
+        return false;
+    }
+    
+    sach->soluong--;
+
+    return true;
+}
+
+void initData()
+{
+    docSachTuFile();
+    docDocGiaTuFile();
+    docNhanVienTuFile();
+}
 
 // Ket thuc cac chuc nang
 /*-------------------------------------------------------*/
@@ -470,7 +643,7 @@ void lapPhieuMuonSach()
 
 int main()
 {
-  DocGia dg= themdocgia();
-  inDocGia(dg);
+    initData();
+    lapPhieuMuonSach();
 }
 /*-------------------------------------------------------*/
