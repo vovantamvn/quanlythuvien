@@ -10,7 +10,7 @@ struct NhanVien
     string ngaysinh;
     string cmnd;
     string diachi;
-    int gioitinh; // 0: nu, 1: nam
+    int gioitinh;  // 0: nu, 1: nam
     int trangthai; // 0: block, 1: actived
 };
 
