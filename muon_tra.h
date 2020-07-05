@@ -1,17 +1,19 @@
-#include<string>
+#pragma once
+#include <string>
+#include "ngay.h"
 using namespace std;
-struct Muon_Tra
+typedef struct Muon_Tra
 {
     /* data */
     string madocgia;
     string ngaymuon;
-    string ngaytradukien;
-    string ngaytrathucte;
-};
+    Ngay ngaytradukien;
+    Ngay ngaytrathucte;
+} Muon_Tra;
 struct NodeMuon_Tra
 {
     /* data */
     Muon_Tra data;
     Muon_Tra * next;
-};
+} NodeMuon_Tra;
 

@@ -1,8 +1,10 @@
+#pragma once
 #include<string>
 using namespace std;
-struct Sach
+
+typedef struct Sach
 {
-    string masach;
+    int masach;
     string tensach;
     string tacgia;
     string nhasanxuat;
@@ -10,10 +12,10 @@ struct Sach
     string theloai;
     double giasach;
     int soluong;
-};
+} Sach;
 
-struct NodeSach
+typedef struct NodeSach
 {
     Sach data;
     NodeSach *next;
-};
+} NodeSach;

@@ -1,23 +1,26 @@
-#include<string>
+#pragma once
+#include <string>
+#include "ngay.h"
 using namespace std;
-struct DocGia
+
+typedef struct DocGia
 {
-    string ma;
+    int ma;
     string hoten;
     string cmnd;
-    string ngaysinh;
+    Ngay ngaysinh;
     int gioitinh; // 0 nu , 1 nam
     string email;
     string diachi;
-    string ngaylapthe;
-    string ngayhethan;
+    Ngay ngaylapthe;
+    Ngay ngayhethan;
 
-};
+ } DocGia;
 
 struct NodeDocGia
 {
     DocGia data;
     NodeDocGia *next;
-};
+} NodeDocGia;
 
 
