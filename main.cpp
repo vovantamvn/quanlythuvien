@@ -461,6 +461,16 @@ void lapPhieuMuonSach()
 
 
 //6.1
+int  soluongsach(NodeDocGia *head) 
+{
+    NodeDocGia *point = head;
+    int coutd = 0;
+    while (point != NULL)
+    {
+        inDocGia(point->data);
+        point = point->next;
+    }    
+}
 
 void menuAdmin(){
 
