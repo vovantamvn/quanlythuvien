@@ -15,7 +15,7 @@ typedef struct DocGia
     string diachi;
     Ngay ngaylapthe;
     Ngay ngayhethan;
-};
+} DocGia;
 
 
 typedef struct NodeDocGia
