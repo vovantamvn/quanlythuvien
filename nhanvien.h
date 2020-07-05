@@ -1,21 +1,22 @@
+#pragma once
 #include <string>
+#include"ngay.h"
 using namespace std;
 
-struct NhanVien
+typedef struct NhanVien
 {
     int id;
     string tendangnhap;
     string matkhau;
-    string hoten;
-    string ngaysinh;
+    Ngay ngaysinh;
     string cmnd;
     string diachi;
     int gioitinh;  // 0: nu, 1: nam
     int trangthai; // 0: block, 1: actived
-};
+} NhanVien;
 
-struct NodeNhanVien
+typedef struct NodeNhanVien
 {
     NhanVien data;
     NodeNhanVien *next;
-};
+} NodeNhanVien;

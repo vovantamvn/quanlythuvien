@@ -1,9 +1,10 @@
+#pragma once
 #include <string>
 #include "ngay.h"
 using namespace std;
 
 
-struct DocGia
+typedef struct DocGia
 {
     int ma;
     string hoten;
@@ -14,13 +15,13 @@ struct DocGia
     string diachi;
     Ngay ngaylapthe;
     Ngay ngayhethan;
-
 };
 
-struct NodeDocGia
+
+typedef struct NodeDocGia
 {
     DocGia data;
     NodeDocGia *next;
-};
+} NodeDocGia;
 
 
