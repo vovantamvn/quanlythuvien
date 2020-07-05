@@ -2,12 +2,12 @@
 using namespace std;
 struct Sach
 {
-    string masach;
+    int masach;
     string tensach;
     string tacgia;
     string nhasanxuat;
-    string namsuatban;
     string theloai;
+    int namxuatban;
     double giasach;
     int soluong;
 };

@@ -1,0 +1,2 @@
+mã sách, nam, giá sách, số quyển sách, tên sách, tác giả, nhà xuất bản, xuất bản, thể loại
+1 1997 200000 205De meo phieu luu ki,Ngo Bao Trung,Nha xuat ban puong duong,Sach giai
