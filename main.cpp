@@ -1037,20 +1037,20 @@ int laySoNgayCuaThang(int thang, int nam)
     case 10:
     case 12:
         return 31;
-    
-    case 4: 
+
+    case 4:
     case 6:
     case 9:
     case 11:
         return 30;
-    
+
     case 2:
-        if ((nam%4==0 && nam%100!=0) || (nam%400==0))
+        if ((nam % 4 == 0 && nam % 100 != 0) || (nam % 400 == 0))
         {
             return 29;
         }
         return 28;
-        
+
     default:
         return -1;
     }
@@ -1066,17 +1066,17 @@ bool kiemTraTreHan(MuonTra phieumuon)
     {
         return false;
     }
-    
+
     if (ngaytra.nam == ngaymuon.nam)
     {
         if (ngaytra.thang == ngaymuon.thang)
         {
             return (ngaytra.ngay - 7 > ngaymuon.ngay);
         }
-        
+
         return (laySoNgayCuaThang(ngaymuon.thang, ngaymuon.nam) + ngaytra.ngay - 7 > ngaymuon.ngay);
     }
-    
+
     return (laySoNgayCuaThang(ngaymuon.thang, ngaymuon.nam) + ngaytra.ngay - 7 > ngaymuon.ngay);
 }
 
@@ -1089,7 +1089,7 @@ void thongKeSoSachDangMuon()
     {
         if (point->data.ngaytrathucte.ngay == 0)
         {
-            for(int i=0; i<3; i++)
+            for (int i = 0; i < 3; i++)
             {
                 if (point->data.masach[i] != 0)
                 {
@@ -1097,12 +1097,12 @@ void thongKeSoSachDangMuon()
                 }
             }
         }
-        
+
         point = point->next;
     }
-    
-    cout<<"Tong so sach dang duoc muon la: "<<soluong<<endl;
-} 
+
+    cout << "Tong so sach dang duoc muon la: " << soluong << endl;
+}
 
 // 6.6 Thong ke doc gia bi tre han
 void thongKeDocGiaBiTreHan()
@@ -1121,19 +1121,17 @@ void thongKeDocGiaBiTreHan()
             {
                 ten = dg->hoten;
             }
-            
 
             printf(
-            "%-10d %-10d %-30s %02d/%02d/%02d\n",
-            muontra.ma,
-            muontra.madocgia,
-            ten.c_str(),
-            muontra.ngaymuon.ngay, muontra.ngaymuon.thang, muontra.ngaymuon.nam);
+                "%-10d %-10d %-30s %02d/%02d/%02d\n",
+                muontra.ma,
+                muontra.madocgia,
+                ten.c_str(),
+                muontra.ngaymuon.ngay, muontra.ngaymuon.thang, muontra.ngaymuon.nam);
         }
-        
+
         point = point->next;
     }
-    
 }
 
 void menuAdmin()
@@ -1193,7 +1191,7 @@ void menuAdmin()
             taonhanvien();
             break;
         case 16:
-
+            //Phan quyen nguoi dung
             break;
         case 21:
             inDanhSachDocGia();
@@ -1204,17 +1202,19 @@ void menuAdmin()
             break;
 
         case 23:
-
+            //Cap nhat thong tin doc gia
             break;
 
         case 24:
-
+            //Xoa doc gia:
             break;
 
         case 25:
+            //Tim kiem theo CMND
             break;
 
         case 26:
+            //Tim kiem theo ho ten 
             break;
 
         case 31:
@@ -1225,28 +1225,40 @@ void menuAdmin()
             themsach();
             break;
         case 33:
+            //Cap nhat thong tin quyen sach
             break;
         case 34:
+            //Xoa quyen sach
             break;
         case 35:
+            //Tim kiem theo ISBN
             break;
         case 36:
+            //Tim kiem theo ten 
             break;
         case 40:
+            //Lap phieu muon 
             break;
         case 50:
+            //Lap phieu tra
             break;
         case 61:
+            //Thong ke cac sach co trong thu vien
             break;
         case 62:
+            //Thong ke so luong sach theo loai
             break;
         case 63:
+            //.Thong ke so luong doc gia
             break;
         case 64:
+            //Thong ke so luong doc gia theo gioi tinh
             break;
         case 65:
+            //Thong ke sach dang muon
             break;
         case 66:
+            //THong ke sach qua han 
             break;
         default:
             cout << "Ban nhap khong hop le!\n";
@@ -1285,7 +1297,7 @@ void menuQuanly()
         cout << "63.Thong ke so luong doc gia : " << endl;
         cout << "64:Thong ke so luong doc gia theo gioi tinh  :" << endl;
         cout << "65.Thong ke sach dang muon: " << endl;
-        cout << "66.thong ke doc gia dang bi tre hen : " << endl;
+        cout << "66.Thong ke doc gia dang bi tre hen : " << endl;
         cout << "Moi chon chuc nang: " << endl;
 
         int chon;
@@ -1298,7 +1310,8 @@ void menuQuanly()
             break;
 
         case 13:
-        
+            //Thay doi mat khau
+
             break;
 
         case 14:
@@ -1313,15 +1326,19 @@ void menuQuanly()
             break;
 
         case 23:
+            //Cap nhat thong tin doc gia
             break;
 
         case 24:
+            //Xoa doc gia
             break;
 
         case 25:
+            //Tim kiem theo CMND
             break;
 
         case 26:
+            //Tim kiem theo ho ten
             break;
 
         case 31:
@@ -1332,30 +1349,40 @@ void menuQuanly()
             themsach();
             break;
         case 33:
-            
+            //Cap nhat thong tin quyen sach
             break;
         case 34:
             xoaThongTinSach();
             break;
         case 35:
+            //Tim kiem theo ISBN
             break;
         case 36:
+            //Tim kiem theo ten sach 
             break;
         case 40:
+            //Lap phieu muon sach
             break;
         case 50:
+            //Lap phieu tra sach 
             break;
         case 61:
+            xemSachTrongThuVien();
             break;
         case 62:
+            //Thong ke so luong sach theo loai
             break;
         case 63:
+            //Thong ke so luong doc gia 
             break;
         case 64:
+            //Thong ke so luong doc gia theo gioi tinh 
             break;
         case 65:
+            //Thong ke sach dang muon
             break;
         case 66:
+            //Thong ke doc gia dang bi tre hen
             break;
         default:
             cout << "Ban nhap khong hop le!\n";
@@ -1410,23 +1437,29 @@ void menuChuyenvien()
             break;
 
         case 23:
+            //cap nhat thong tin doc gia 
 
             break;
 
         case 25:
-
+            //tim kiem theo CMND
             break;
 
         case 26:
+            //Tim kiem theo ho ten
             break;
 
         case 35:
+            //Tim kiem theo ISBN
             break;
         case 36:
+            //Tim kiem theo ten sach
             break;
-        case 40:
+        case 40:    
+            //Lap phieu muon sach
             break;
         case 50:
+            //Lap phieu tra sach 
             break;
         default:
             cout << "Ban nhap khong hop le!\n";
@@ -1473,5 +1506,6 @@ int main()
             break;
         }
     }
+    // menuQuanly();
 }
 /*-------------------------------------------------------*/
