@@ -61,8 +61,8 @@ void themNhanVienVaoDauNode(NhanVien nhanvien)
 
 void xoaManHinh()
 {
-    system("clear");
-    //system("cls");
+    //system("clear");
+    system("cls");
 }
 
 void docSachTuFile()
