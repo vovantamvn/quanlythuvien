@@ -1461,15 +1461,15 @@ int main()
         switch (nhanVien->loainguoidung)
         {
         case ROLE_ADMIN:
-            cout << "admin";
+            menuAdmin();
             break;
 
         case ROLE_QUANLY:
-            cout << "quan ly";
+            menuQuanly();
             break;
 
         case ROLE_CHUYENVIEN:
-            cout << "chuyen vien";
+            menuQuanly();
             break;
         }
     }
