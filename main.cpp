@@ -16,6 +16,9 @@ NodeNhanVien *headNhanVien = NULL;
 NodeMuonTra *headMuonTra = NULL;
 NodeDocGia *headDocGia = NULL;
 NodeSach *headSach = NULL;
+const int ROLE_ADMIN = 1;
+const int ROLE_QUANLY = 2;
+const int ROLE_CHUYENVIEN = 3;
 /*-------------------------------------------------------*/
 
 /*-------------------------------------------------------*/
@@ -337,35 +340,13 @@ bool dangNhap(string tendangnhap, string matkhau)
     {
         if (tendangnhap == point->data.tendangnhap && matkhau == point->data.matkhau)
         {
+            nhanVien = &point->data;
             return true;
         }
         point = point->next;
     }
 
     return false;
-}
-
-// 1.1 chuc nang dang nhap
-//oke
-void chucNangDangNhap()
-{
-    string tendangnhap;
-    string matkhau;
-
-    cout << "Nhap ten dang nhap: ";
-    getline(cin, tendangnhap);
-
-    cout << "Nhap mat khau: ";
-    getline(cin, matkhau);
-
-    if (dangNhap(tendangnhap, matkhau))
-    {
-        // Chuc nang dang nhap dung
-    }
-    else
-    {
-        cout << "Ten dang nhap hoac mat khau bi sai!" << endl;
-    }
 }
 
 // 1.2 dang xuat
@@ -453,26 +434,6 @@ NhanVien taonhanvien()
     xoaBoNhoDem();
     return nv;
 }
-
-// sap bo
-// 1.5 tao nguoi dung
-// them nguoi dung vao danh sach
-// void themNguoiDungVaoDau (NodeNhanVien *head, NhanVien &nv) {
-//     NodeNhanVien *node = new NodeNhanVien();
-//     node->data = nv;
-//     node->next = NULL;
-
-//     // check head
-//     if (head == NULL)
-//     {
-//         head = node;
-//     }
-//     else
-//     {
-//         node->next = head;
-//         head = node;
-//     }
-// }
 
 void inThongTinDocGia(DocGia dg)
 {
@@ -608,8 +569,12 @@ void suathongtindocgia(DocGia &d)
 }
 
 // 2.4 Xoa thong tin mot doc gia
+<<<<<<< HEAD
+bool xoaDocGiaTheoId(int id) 
+=======
 
 bool xoaDocGiaTheoId(int id)
+>>>>>>> 65f54104a141e260a5296d999d7b045031a8d528
 {
     NodeDocGia *point = headDocGia;
     NodeDocGia *head = headDocGia;
@@ -656,6 +621,21 @@ DocGia *timDocGiaTheoChungMinhNhanDan(string cmnd)
 }
 
 // 2.6 Tim kiem doc gia theo ho ten
+DocGia *timDocGiaTheoHoTen(string ten)
+{
+    NodeDocGia *point = headDocGia;
+    while (point != NULL)
+    {
+        if (point->data.hoten == ten)
+        {
+            return &point->data;
+        }
+
+        point = point->next;
+    }
+
+    return NULL;
+}
 
 // 3.1 Xem danh sach cac sach trong thu vien
 // Oke
@@ -746,8 +726,6 @@ void chinhsuathongtinsach(Sach &s)
     cin >> s.soluong;
 }
 
-//3.4 Xóa thông tin sách
-
 //3.5 Tìm kiếm sách theo ISBN
 Sach *timSachTheoMa(int ma)
 {
@@ -763,6 +741,41 @@ Sach *timSachTheoMa(int ma)
     }
 
     return NULL;
+}
+
+//3.4 Xóa thông tin sách
+void xoaThongTinSach()
+{
+    xemSachTrongThuVien();
+    int ma;
+    cout<<"Nhap ma sach: ";
+    cin>>ma;
+
+    Sach *sach = timSachTheoMa(ma);
+    if (sach == NULL)
+    {
+        cout<<"Ma khong ton tai!\n";
+        return;
+    }
+    
+    if (headSach != NULL && headSach->data.masach == ma)
+    {
+        headSach = headSach->next;
+        return;
+    }
+
+    NodeSach *point = headSach;
+    while (point != NULL)
+    {
+        if (point->next->data.masach == ma)
+        {
+            NodeSach *next = point->next->next;
+            point->next = next;
+            break;
+        }
+    }
+    
+    cout<<"Da xoa sach thanh cong!\n";
 }
 
 //3.6 Tìm kiếm sách theo tên sách
@@ -863,7 +876,7 @@ DocGia *timDocGiaTheoMa(int ma)
     return NULL;
 }
 
-void inDanhSachPhieuMuonTra()
+void inDanhSachPhieuMuonChuaTra()
 {
     NodeMuonTra *point = headMuonTra;
     printf("%-10s %-10s %-30s %s\n", "Ma phieu", "Ma doc gia", "Ten doc gia", "Ngay muon");
@@ -877,27 +890,44 @@ void inDanhSachPhieuMuonTra()
         {
             ten = dg->hoten;
         }
+        
+        point = point->next;
 
+        if (muontra.ngaytrathucte.ngay != 0 && muontra.ngaytrathucte.thang != 0 && muontra.ngaytrathucte.nam != 0)
+        {
+            continue;
+        }
+        
         printf(
-            "%-10d %-10d %-30s %02d/%02d%02d\n",
+            "%-10d %-10d %-30s %02d/%02d/%02d\n",
             muontra.ma,
             muontra.madocgia,
             ten.c_str(),
             muontra.ngaymuon.ngay, muontra.ngaymuon.thang, muontra.ngaymuon.nam);
 
-        point = point->next;
     }
 }
 
 MuonTra *timPhieuMuonTraTheoMa(int ma)
 {
+    NodeMuonTra *point = headMuonTra;
+    while (point != NULL)
+    {
+        if (point->data.ma == ma)
+        {
+            return &point->data;
+        }
+        
+        point = point->next;
+    }
+
     return NULL;
 }
 
 // 5.0 Lap phieu tra sach
 void lapPhieuTraSach()
 {
-    inDanhSachPhieuMuonTra();
+    inDanhSachPhieuMuonChuaTra();
     int ma;
     cout << "Nhap ma phieu muon: ";
     cin >> ma;
@@ -981,9 +1011,13 @@ int thongkesoluongdocgianam()
 {
     int coutd = 0;
     NodeDocGia *point = headDocGia;
-    while (point->data.gioitinh == 1)
+    while (point != NULL)
     {
-        coutd++;
+        if (point->data.gioitinh == 1)
+        {
+            coutd++;
+        }
+        
         point = point->next;
     }
     return coutd;
@@ -995,7 +1029,6 @@ int thongkesoluongdocgianu()
 
     return coutd;
 }
-
 
 void menuAdmin()
 {
@@ -1038,9 +1071,12 @@ void menuAdmin()
         switch (chon)
         {
         case 12:
+            dangXuat();
+            return;
             break;
 
         case 13:
+            thaydoimatkhau(*nhanVien);
             break;
 
         case 14:
@@ -1265,8 +1301,6 @@ void menuChuyenvien()
         case 26:
             break;
 
-        case 1:
-            break;
         case 35:
             break;
         case 36:
@@ -1290,6 +1324,35 @@ void menuChuyenvien()
 int main()
 {
     initData();
-    lapPhieuTraSach();
+    while (true)
+    {
+        string tendangnhap;
+        string matkhau;
+        cout<<"Nhap ten dang nhap: ";
+        getline(cin, tendangnhap);
+        cout<<"Nhap mat khau: ";
+        getline(cin, matkhau);
+
+        if (dangNhap(tendangnhap, matkhau) == 0)
+        {
+            cout<<"Ten dang nhap hoac mat khau khong dung!\n";
+            continue;
+        }
+        
+        switch (nhanVien->loainguoidung)
+        {
+        case ROLE_ADMIN:
+            cout<<"admin";
+            break;
+
+        case ROLE_QUANLY:
+            cout<<"quan ly";
+            break;
+
+        case ROLE_CHUYENVIEN:
+            cout<<"chuyen vien";
+            break;
+        }
+    }
 }
 /*-------------------------------------------------------*/
