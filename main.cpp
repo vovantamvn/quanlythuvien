@@ -1141,7 +1141,58 @@ int soluongsach()
     return coutd;
 }
 
+void chucNangThongKeSoLuongSach()
+{
+    int soluong = soluongsach();
+    cout<<"So luong loai sach trong thu vien: "<<soluong<<endl;
+}
+
 //6.2 Thong ke so luong sach theo the loai
+void chucNangThongKeSoLuongSachTheoTheLoai()
+{
+    const int MAX = soluongsach();
+    int value[MAX] = {0};
+    string key[MAX] = {""};
+    
+    NodeSach *point = headSach;
+    while (point != NULL)
+    {
+        Sach sach = point->data;
+        
+        int so = sach.soluong;
+        string loai = sach.theloai;
+
+        for (int i = 0; i < MAX; i++)
+        {
+            if (key[i] == loai)
+            {
+                value[i] += so;
+                break;
+            }
+
+            if (key[i] == "")
+            {
+                key[i] = loai;
+                value[i] += so;
+                break;   
+            }
+        }
+        
+        point = point->next;
+    }
+    
+    printf("%-20s %s\n", "Loai sach", "So luong");
+    for (int i = 0; i < MAX; i++)
+    {
+        if (key[i] == "")
+        {
+            break;
+        }
+        
+        printf("%-20s %d\n", key[i].c_str(), value[i]);
+    }
+    
+}
 
 //6.3 THong ke so luong doc gia
 int soluongdocgia()
@@ -1154,6 +1205,12 @@ int soluongdocgia()
         point = point->next;
     }
     return coutd;
+}
+
+void chucNangThongkeSoLuongDocGia()
+{
+    int soluong = soluongdocgia();
+    cout<<"So luong doc gia la: "<<soluong<<endl;
 }
 
 //6.4 Thong ke so luong doc gia theo gioi tinh nam ;
@@ -1178,6 +1235,12 @@ int thongkesoluongdocgianu()
     int coutd = soluongdocgia() - thongkesoluongdocgianam();
 
     return coutd;
+}
+
+void chucNangThongKeSoLuongDocGiaTheoGioiTinh()
+{
+    cout<<"So luong doc gia nam: "<<thongkesoluongdocgianam()<<endl;
+    cout<<"So luong doc gia nu: "<<thongkesoluongdocgianu()<<endl;
 }
 
 // Lay so ngay cua thang
@@ -1237,7 +1300,7 @@ bool kiemTraTreHan(MuonTra phieumuon)
 }
 
 // 6.5 Thong ke so sach dang muon
-void thongKeSoSachDangMuon()
+void chucNangThongKeSoSachDangMuon()
 {
     int soluong = 0;
     NodeMuonTra *point = headMuonTra;
@@ -1261,7 +1324,7 @@ void thongKeSoSachDangMuon()
 }
 
 // 6.6 Thong ke doc gia bi tre han
-void thongKeDocGiaBiTreHan()
+void chucNangThongKeDocGiaBiTreHan()
 {
     NodeMuonTra *point = headMuonTra;
     printf("%-10s %-10s %-30s %s\n", "Ma phieu", "Ma doc gia", "Ten doc gia", "Ngay muon");
@@ -1300,8 +1363,7 @@ void menuAdmin()
         cout << "13.Thay doi mat khau : " << endl;
         cout << "14.Cap nhat thong tin ca nhan: " << endl;
         cout << "15.Tao nguoi dung" << endl;
-        cout << "16.Phan quyen nguoi dung" << endl;
-
+    
         cout << "21.Xem danh sach doc gia : " << endl;
         cout << "22.Them doc gia: " << endl;
         cout << "23.Cap nhat thong tin doc gia : " << endl;
@@ -1352,10 +1414,6 @@ void menuAdmin()
             chucNangThemNhanVien();
             break;
 
-        case 16:
-            //Phan quyen nguoi dung
-            break;
-
         case 21:
             inDanhSachDocGia();
             break;
@@ -1388,40 +1446,40 @@ void menuAdmin()
             chucNangThemSach();
             break;
         case 33:
-            //Cap nhat thong tin quyen sach
+            chucNangChinhSuaThongTinSach();
             break;
         case 34:
-            //Xoa quyen sach
+            xoaThongTinSach();
             break;
         case 35:
-            //Tim kiem theo ISBN
+            chucNangTimKiemSachTheoMa();
             break;
         case 36:
-            //Tim kiem theo ten 
+            chucNangTimKiemSachTheoTen();
             break;
         case 40:
-            //Lap phieu muon 
+            lapPhieuMuonSach();
             break;
         case 50:
-            //Lap phieu tra
+            lapPhieuTraSach();
             break;
         case 61:
-            //Thong ke cac sach co trong thu vien
+            xemSachTrongThuVien();
             break;
         case 62:
-            //Thong ke so luong sach theo loai
+            chucNangThongKeSoLuongSachTheoTheLoai();
             break;
         case 63:
-            //.Thong ke so luong doc gia
+            chucNangThongkeSoLuongDocGia();
             break;
         case 64:
-            //Thong ke so luong doc gia theo gioi tinh
+            chucNangThongKeSoLuongDocGiaTheoGioiTinh();
             break;
         case 65:
-            //Thong ke sach dang muon
+            chucNangThongKeSoSachDangMuon();
             break;
         case 66:
-            //THong ke sach qua han 
+            chucNangThongKeDocGiaBiTreHan();
             break;
         default:
             cout << "Ban nhap khong hop le!\n";
@@ -1539,16 +1597,16 @@ void menuQuanly()
             //Thong ke so luong sach theo loai
             break;
         case 63:
-            //Thong ke so luong doc gia 
+            chucNangThongkeSoLuongDocGia();
             break;
         case 64:
-            //Thong ke so luong doc gia theo gioi tinh 
+            chucNangThongKeSoLuongDocGiaTheoGioiTinh();
             break;
         case 65:
-            //Thong ke sach dang muon
+            chucNangThongKeSoSachDangMuon();
             break;
         case 66:
-            //Thong ke doc gia dang bi tre hen
+            chucNangThongKeDocGiaBiTreHan();
             break;
         default:
             cout << "Ban nhap khong hop le!\n";
