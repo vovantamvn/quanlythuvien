@@ -449,7 +449,7 @@ void inThongTinDocGia(DocGia dg)
 //oke
 void inThongTinNgay(string thongtin, Ngay ngay)
 {
-    cout << thongtin << ": " << ngay.ngay << "/" << ngay.thang << "/" << ngay.nam << endl;
+    cout << thongtin << " : " << ngay.ngay << " / " << ngay.thang << " / " << ngay.nam << endl;
 }
 
 // Xem thong tin doc gia
@@ -541,40 +541,35 @@ void suathongtindocgia(DocGia &d)
     getline(cin, d.hoten);
     cout << "nhap chung minh nhan dan  : ";
     getline(cin, d.cmnd);
-    cout << "nhap ngay sinh  :  ";
+    cout << "nhap ngay sinh  : ";
     cin >> d.ngaysinh.ngay;
-    cout << "nhap thang sinh  :  ";
+    cout << "nhap thang sinh  : ";
     cin >> d.ngaysinh.thang;
-    cout << "nhap nam sinh  :  ";
+    cout << "nhap nam sinh  : ";
     cin >> d.ngaysinh.nam;
     cout << "nhap gioi tinh  : ";
     cin >> d.gioitinh;
     cin.ignore();
     cout << "nhap email  : ";
     getline(cin, d.email);
-    cout << "nhap dia chi  :  ";
+    cout << "nhap dia chi  : ";
     getline(cin, d.diachi);
-    cout << "nhap ngay lap the  :  ";
+    cout << "nhap ngay lap the : ";
     cin >> d.ngaylapthe.ngay;
-    cout << "nhap thang lap the  :  ";
+    cout << "nhap thang lap the : ";
     cin >> d.ngaylapthe.thang;
-    cout << "nhap nam lap the   : ";
+    cout << "nhap nam lap the  : ";
     cin >> d.ngaylapthe.nam;
-    cout << "nhap ngay het han  : ";
+    cout << "nhap ngay het han : ";
     cin >> d.ngayhethan.ngay;
-    cout << "nhap thang het han  : ";
+    cout << "nhap thang het han : ";
     cin >> d.ngayhethan.thang;
-    cout << "nhap nam het han  :  ";
+    cout << "nhap nam het han : ";
     cin >> d.ngayhethan.ngay;
 }
 
 // 2.4 Xoa thong tin mot doc gia
-<<<<<<< HEAD
-bool xoaDocGiaTheoId(int id) 
-=======
-
 bool xoaDocGiaTheoId(int id)
->>>>>>> 65f54104a141e260a5296d999d7b045031a8d528
 {
     NodeDocGia *point = headDocGia;
     NodeDocGia *head = headDocGia;
@@ -748,16 +743,16 @@ void xoaThongTinSach()
 {
     xemSachTrongThuVien();
     int ma;
-    cout<<"Nhap ma sach: ";
-    cin>>ma;
+    cout << "Nhap ma sach: ";
+    cin >> ma;
 
     Sach *sach = timSachTheoMa(ma);
     if (sach == NULL)
     {
-        cout<<"Ma khong ton tai!\n";
+        cout << "Ma khong ton tai!\n";
         return;
     }
-    
+
     if (headSach != NULL && headSach->data.masach == ma)
     {
         headSach = headSach->next;
@@ -774,8 +769,8 @@ void xoaThongTinSach()
             break;
         }
     }
-    
-    cout<<"Da xoa sach thanh cong!\n";
+
+    cout << "Da xoa sach thanh cong!\n";
 }
 
 //3.6 Tìm kiếm sách theo tên sách
@@ -890,21 +885,20 @@ void inDanhSachPhieuMuonChuaTra()
         {
             ten = dg->hoten;
         }
-        
+
         point = point->next;
 
         if (muontra.ngaytrathucte.ngay != 0 && muontra.ngaytrathucte.thang != 0 && muontra.ngaytrathucte.nam != 0)
         {
             continue;
         }
-        
+
         printf(
             "%-10d %-10d %-30s %02d/%02d/%02d\n",
             muontra.ma,
             muontra.madocgia,
             ten.c_str(),
             muontra.ngaymuon.ngay, muontra.ngaymuon.thang, muontra.ngaymuon.nam);
-
     }
 }
 
@@ -917,7 +911,7 @@ MuonTra *timPhieuMuonTraTheoMa(int ma)
         {
             return &point->data;
         }
-        
+
         point = point->next;
     }
 
@@ -1017,7 +1011,7 @@ int thongkesoluongdocgianam()
         {
             coutd++;
         }
-        
+
         point = point->next;
     }
     return coutd;
@@ -1039,116 +1033,7 @@ void menuAdmin()
         cout << "13.Thay doi mat khau : " << endl;
         cout << "14.Cap nhat thong tin ca nhan: " << endl;
         cout << "15.Tao nguoi dung" << endl;
-        cout << "16.Tao nguoi dung" << endl;
-
-        cout << "21.Xem danh sach doc gia : " << endl;
-        cout << "22.Them doc gia: " << endl;
-        cout << "23.Cap nhat thong tin doc gia : " << endl;
-        cout << "24:Xoa doc gia:" << endl;
-        cout << "25.Tim kiem theo CMND: " << endl;
-        cout << "26.Tim kiem theo ho ten : " << endl;
-
-        cout << "31.Xem danh sach cac sach trong thu vien  : " << endl;
-        cout << "32.Them sach : " << endl;
-        cout << "33.Cap nhat thong tin quyen sach : " << endl;
-        cout << "34:Xoa quyen sach :" << endl;
-        cout << "35.Tim kiem theo ISBN : " << endl;
-        cout << "36.Tim kiem theo ten sach : " << endl;
-
-        cout << "40.Lap phieu muon sach" << endl;
-        cout << "50.Lap phieu tra sach" << endl;
-
-        cout << "61.Thong ke cac sach co trong thu vien : " << endl;
-        cout << "62.Thong ke so luong sach theo loai : " << endl;
-        cout << "63.Thong ke so luong doc gia : " << endl;
-        cout << "64:Thong ke so luong doc gia theo gioi tinh  :" << endl;
-        cout << "65.Thong ke sach dang muon: " << endl;
-        cout <<  "66.thong ke doc gia dang bi tre hen : " << endl;
-        cout << "Moi chon chuc nang: " << endl;
-
-        int chon;
-        cin >> chon;
-        switch (chon)
-        {
-        case 12:
-            dangXuat();
-            return;
-            break;
-
-        case 13:
-            thaydoimatkhau(*nhanVien);
-            break;
-
-        case 14:
-            break;
-
-        case 15:
-            break;
-        case 16:
-            break;
-        case 21:
-            break;
-
-        case 22:
-            break;
-
-        case 23:
-            break;
-
-        case 24:
-            break;
-
-        case 25:
-            break;
-
-        case 26:
-            break;
-
-        case 31:
-            break;
-
-        case 32:
-            break;
-        case 33:
-            break;
-        case 34:
-            break;
-        case 35:
-            break;
-        case 36:
-            break;
-        case 40:
-            break;
-        case 50:
-            break;
-        case 61:
-            break;
-        case 62:
-            break;
-        case 63:
-            break;
-        case 64:
-            break;
-        case 65:
-            break;
-        case 66:
-            break;
-        default:
-            cout << "Ban nhap khong hop le!\n";
-        }
-    }
-}
-
-
-void menuQuanly()
-{
-     while (true)
-    {
-        xoaManHinh();
-        cout << "12.Dang xuat: " << endl;
-        cout << "13.Thay doi mat khau : " << endl;
-        cout << "14.Cap nhat thong tin ca nhan: " << endl;
-        
+        cout << "16.Phan quyen nguoi dung" << endl;
 
         cout << "21.Xem danh sach doc gia : " << endl;
         cout << "22.Them doc gia: " << endl;
@@ -1180,27 +1065,38 @@ void menuQuanly()
         switch (chon)
         {
         case 12:
+            dangXuat();
+            return;
             break;
 
         case 13:
+            thaydoimatkhau(*nhanVien);
             break;
 
         case 14:
+            capnhatnhanvien(*nhanVien);
             break;
 
         case 15:
+            taonhanvien();
             break;
+        case 16:
 
+            break;
         case 21:
+            inDanhSachDocGia();
             break;
 
         case 22:
+            themdocgia();
             break;
 
         case 23:
+
             break;
 
         case 24:
+
             break;
 
         case 25:
@@ -1209,13 +1105,12 @@ void menuQuanly()
         case 26:
             break;
 
-        case 1:
-            break;
-
         case 31:
+            xemSachTrongThuVien();
             break;
 
         case 32:
+            themsach();
             break;
         case 33:
             break;
@@ -1247,15 +1142,123 @@ void menuQuanly()
     }
 }
 
-void menuChuyenvien()
+void menuQuanly()
 {
-     while (true)
+    while (true)
     {
         xoaManHinh();
         cout << "12.Dang xuat: " << endl;
         cout << "13.Thay doi mat khau : " << endl;
         cout << "14.Cap nhat thong tin ca nhan: " << endl;
+
+        cout << "21.Xem danh sach doc gia : " << endl;
+        cout << "22.Them doc gia: " << endl;
+        cout << "23.Cap nhat thong tin doc gia : " << endl;
+        cout << "24:Xoa doc gia:" << endl;
+        cout << "25.Tim kiem theo CMND: " << endl;
+        cout << "26.Tim kiem theo ho ten : " << endl;
+
+        cout << "31.Xem danh sach cac sach trong thu vien  : " << endl;
+        cout << "32.Them sach : " << endl;
+        cout << "33.Cap nhat thong tin quyen sach : " << endl;
+        cout << "34:Xoa quyen sach :" << endl;
+        cout << "35.Tim kiem theo ISBN : " << endl;
+        cout << "36.Tim kiem theo ten sach : " << endl;
+
+        cout << "40.Lap phieu muon sach" << endl;
+        cout << "50.Lap phieu tra sach" << endl;
+
+        cout << "61.Thong ke cac sach co trong thu vien : " << endl;
+        cout << "62.Thong ke so luong sach theo loai : " << endl;
+        cout << "63.Thong ke so luong doc gia : " << endl;
+        cout << "64:Thong ke so luong doc gia theo gioi tinh  :" << endl;
+        cout << "65.Thong ke sach dang muon: " << endl;
+        cout << "66.thong ke doc gia dang bi tre hen : " << endl;
+        cout << "Moi chon chuc nang: " << endl;
+
+        int chon;
+        cin >> chon;
+        switch (chon)
+        {
+        case 12:
+            dangXuat();
+            return;
+            break;
+
+        case 13:
         
+            break;
+
+        case 14:
+            capnhatnhanvien(*nhanVien);
+            break;
+        case 21:
+            inDanhSachDocGia();
+            break;
+
+        case 22:
+            themdocgia();
+            break;
+
+        case 23:
+            break;
+
+        case 24:
+            break;
+
+        case 25:
+            break;
+
+        case 26:
+            break;
+
+        case 31:
+            xemSachTrongThuVien();
+            break;
+
+        case 32:
+            themsach();
+            break;
+        case 33:
+            
+            break;
+        case 34:
+            xoaThongTinSach();
+            break;
+        case 35:
+            break;
+        case 36:
+            break;
+        case 40:
+            break;
+        case 50:
+            break;
+        case 61:
+            break;
+        case 62:
+            break;
+        case 63:
+            break;
+        case 64:
+            break;
+        case 65:
+            break;
+        case 66:
+            break;
+        default:
+            cout << "Ban nhap khong hop le!\n";
+        }
+    }
+}
+
+void menuChuyenvien()
+{
+    while (true)
+    {
+        xoaManHinh();
+        cout << "12.Dang xuat: " << endl;
+        cout << "13.Thay doi mat khau : " << endl;
+        cout << "14.Cap nhat thong tin ca nhan: " << endl;
 
         cout << "21.Xem danh sach doc gia : " << endl;
         cout << "22.Them doc gia: " << endl;
@@ -1268,7 +1271,6 @@ void menuChuyenvien()
 
         cout << "40.Lap phieu muon sach" << endl;
         cout << "50.Lap phieu tra sach" << endl;
-
         cout << "Moi chon chuc nang: " << endl;
 
         int chon;
@@ -1280,22 +1282,27 @@ void menuChuyenvien()
             break;
 
         case 13:
+            thaydoimatkhau(*nhanVien);
             break;
 
         case 14:
+            capnhatnhanvien(*nhanVien);
             break;
 
-
         case 21:
+            inDanhSachDocGia();
             break;
 
         case 22:
+            themdocgia();
             break;
 
         case 23:
+
             break;
 
         case 25:
+
             break;
 
         case 26:
@@ -1328,29 +1335,29 @@ int main()
     {
         string tendangnhap;
         string matkhau;
-        cout<<"Nhap ten dang nhap: ";
+        cout << "Nhap ten dang nhap: ";
         getline(cin, tendangnhap);
-        cout<<"Nhap mat khau: ";
+        cout << "Nhap mat khau: ";
         getline(cin, matkhau);
 
         if (dangNhap(tendangnhap, matkhau) == 0)
         {
-            cout<<"Ten dang nhap hoac mat khau khong dung!\n";
+            cout << "Ten dang nhap hoac mat khau khong dung!\n";
             continue;
         }
-        
+
         switch (nhanVien->loainguoidung)
         {
         case ROLE_ADMIN:
-            cout<<"admin";
+            cout << "admin";
             break;
 
         case ROLE_QUANLY:
-            cout<<"quan ly";
+            cout << "quan ly";
             break;
 
         case ROLE_CHUYENVIEN:
-            cout<<"chuyen vien";
+            cout << "chuyen vien";
             break;
         }
     }
