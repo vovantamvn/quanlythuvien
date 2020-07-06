@@ -569,12 +569,7 @@ void suathongtindocgia(DocGia &d)
 }
 
 // 2.4 Xoa thong tin mot doc gia
-<<<<<<< HEAD
-bool xoaDocGiaTheoId(int id) 
-=======
-
 bool xoaDocGiaTheoId(int id)
->>>>>>> 65f54104a141e260a5296d999d7b045031a8d528
 {
     NodeDocGia *point = headDocGia;
     NodeDocGia *head = headDocGia;
@@ -1030,6 +1025,118 @@ int thongkesoluongdocgianu()
     return coutd;
 }
 
+// Lay so ngay cua thang
+int laySoNgayCuaThang(int thang, int nam)
+{
+    switch (thang)
+    {
+    case 1:
+    case 3:
+    case 5:
+    case 7:
+    case 8:
+    case 10:
+    case 12:
+        return 31;
+    
+    case 4: 
+    case 6:
+    case 9:
+    case 11:
+        return 30;
+    
+    case 2:
+        if ((nam%4==0 && nam%100!=0) || (nam%400==0))
+        {
+            return 29;
+        }
+        return 28;
+        
+    default:
+        return -1;
+    }
+}
+
+// Kiem tra doc gia co bi tre han
+bool kiemTraTreHan(MuonTra phieumuon)
+{
+    Ngay ngaymuon = phieumuon.ngaymuon;
+    Ngay ngaytra = phieumuon.ngaytrathucte;
+
+    if (ngaytra.ngay == 0 && ngaytra.thang == 0 && ngaytra.nam == 0)
+    {
+        return false;
+    }
+    
+    if (ngaytra.nam == ngaymuon.nam)
+    {
+        if (ngaytra.thang == ngaymuon.thang)
+        {
+            return (ngaytra.ngay - 7 > ngaymuon.ngay);
+        }
+        
+        return (laySoNgayCuaThang(ngaymuon.thang, ngaymuon.nam) + ngaytra.ngay - 7 > ngaymuon.ngay);
+    }
+    
+    return (laySoNgayCuaThang(ngaymuon.thang, ngaymuon.nam) + ngaytra.ngay - 7 > ngaymuon.ngay);
+}
+
+// 6.5 Thong ke so sach dang muon
+void thongKeSoSachDangMuon()
+{
+    int soluong = 0;
+    NodeMuonTra *point = headMuonTra;
+    while (point != NULL)
+    {
+        if (point->data.ngaytrathucte.ngay == 0)
+        {
+            for(int i=0; i<3; i++)
+            {
+                if (point->data.masach[i] != 0)
+                {
+                    soluong++;
+                }
+            }
+        }
+        
+        point = point->next;
+    }
+    
+    cout<<"Tong so sach dang duoc muon la: "<<soluong<<endl;
+} 
+
+// 6.6 Thong ke doc gia bi tre han
+void thongKeDocGiaBiTreHan()
+{
+    NodeMuonTra *point = headMuonTra;
+    printf("%-10s %-10s %-30s %s\n", "Ma phieu", "Ma doc gia", "Ten doc gia", "Ngay muon");
+
+    while (point != NULL)
+    {
+        if (kiemTraTreHan(point->data))
+        {
+            MuonTra muontra = point->data;
+            string ten = "";
+            DocGia *dg = timDocGiaTheoMa(point->data.madocgia);
+            if (dg != NULL)
+            {
+                ten = dg->hoten;
+            }
+            
+
+            printf(
+            "%-10d %-10d %-30s %02d/%02d/%02d\n",
+            muontra.ma,
+            muontra.madocgia,
+            ten.c_str(),
+            muontra.ngaymuon.ngay, muontra.ngaymuon.thang, muontra.ngaymuon.nam);
+        }
+        
+        point = point->next;
+    }
+    
+}
+
 void menuAdmin()
 {
     while (true)
@@ -1063,7 +1170,7 @@ void menuAdmin()
         cout << "63.Thong ke so luong doc gia : " << endl;
         cout << "64:Thong ke so luong doc gia theo gioi tinh  :" << endl;
         cout << "65.Thong ke sach dang muon: " << endl;
-        cout <<  "66.thong ke doc gia dang bi tre hen : " << endl;
+        cout << "66.thong ke doc gia dang bi tre hen : " << endl;
         cout << "Moi chon chuc nang: " << endl;
 
         int chon;
