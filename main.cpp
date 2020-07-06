@@ -24,7 +24,7 @@ const int ROLE_CHUYENVIEN = 3;
 /*-------------------------------------------------------*/
 // Chuc nang phu
 void themSachVaoDauNode(Sach sach);
-// oke
+
 void themDocGiaVaoDauNode(DocGia docgia)
 {
     NodeDocGia *node = new NodeDocGia();
@@ -41,7 +41,7 @@ void themDocGiaVaoDauNode(DocGia docgia)
         headDocGia = node;
     }
 }
-//oke
+
 void themNhanVienVaoDauNode(NhanVien nhanvien)
 {
     NodeNhanVien *node = new NodeNhanVien();
@@ -58,13 +58,13 @@ void themNhanVienVaoDauNode(NhanVien nhanvien)
         headNhanVien = node;
     }
 }
-//oke
+
 void xoaManHinh()
 {
     system("clear");
     //system("cls");
 }
-//oke
+
 void docSachTuFile()
 {
     //mã sách, nam, giá sách, số quyển sách, tên sách, tác giả, nhà xuất bản, thể loại
@@ -87,7 +87,6 @@ void docSachTuFile()
     file.close();
 }
 
-//oke
 void docDocGiaTuFile()
 {
     //4 1 25 06 1999 2 7 2020 2 7 2021Vo Van Tam,1922215448,vovantam@gmail.com,Hai Lang Quang Tri
@@ -123,7 +122,7 @@ void xoaBoNhoDem()
     cin.clear();
     cin.ignore(INT32_MAX, '\n');
 }
-//oke
+
 void docNhanVienTuFile()
 {
     //1 1 1 1 25 6 1999vovantam,Vo Van,1921682211,Hue
@@ -150,7 +149,6 @@ void docNhanVienTuFile()
     file.close();
 }
 
-//oke
 void themPhieuMuonTraVaoDauNode(MuonTra muontra)
 {
     NodeMuonTra *node = new NodeMuonTra();
@@ -168,7 +166,6 @@ void themPhieuMuonTraVaoDauNode(MuonTra muontra)
     }
 }
 
-//oke
 void docPhieuMuonTraTuFile()
 {
     //2 1 1 2 0 25 6 2020 25 7 2020 28 6 2020
@@ -196,8 +193,6 @@ void docPhieuMuonTraTuFile()
     file.close();
 }
 
-// in sach ra file
-//oke
 void inSachRaFile()
 {
     ofstream file("sach.txt");
@@ -224,8 +219,6 @@ void inSachRaFile()
     file.close();
 }
 
-// in doc gia ra file
-//oke
 void inDocGiaRaFile()
 {
     ofstream file("docgia.txt");
@@ -259,8 +252,6 @@ void inDocGiaRaFile()
     file.close();
 }
 
-// in nhan vien ra file
-//oke
 void inNhanVienRaFile()
 {
     ofstream file("nhanvien.txt");
@@ -292,8 +283,6 @@ void inNhanVienRaFile()
     file.close();
 }
 
-// in phieu muon tra ra file
-//oke
 void inPhieuMuonTraRaFile()
 {
     ofstream file("muontra.txt");
@@ -332,7 +321,6 @@ void inPhieuMuonTraRaFile()
 /*-------------------------------------------------------*/
 // Chuc nang cua chuong trinh
 // 1.1 dang nhap
-//oke
 bool dangNhap(string tendangnhap, string matkhau)
 {
     NodeNhanVien *point = headNhanVien;
@@ -350,15 +338,16 @@ bool dangNhap(string tendangnhap, string matkhau)
 }
 
 // 1.2 dang xuat
-//oke
 void dangXuat()
 {
+    inSachRaFile();
+    inDocGiaRaFile();
+    inNhanVienRaFile();
+    inPhieuMuonTraRaFile();
     nhanVien = NULL;
 }
 
 //1.3 thay doi mat khau;
-//oke
-//update
 void thaydoimatkhau(NhanVien &nv)
 {
     string mkmoi;
@@ -380,8 +369,6 @@ void thaydoimatkhau(NhanVien &nv)
 }
 
 // 1.4 cap  nhat nhan vien
-//oke
-//update
 void capnhatnhanvien(NhanVien &nv)
 {
     cout << "nhap ten dang nhap: ";
@@ -405,7 +392,6 @@ void capnhatnhanvien(NhanVien &nv)
 }
 
 //1.5 tao nguoi dung
-//update
 NhanVien taonhanvien()
 {
     NhanVien nv;
@@ -448,15 +434,13 @@ void inThongTinDocGia(DocGia dg)
         (dg.gioitinh == 1) ? "Nam" : "Nu",
         dg.ngaylapthe.ngay, dg.ngaylapthe.thang, dg.ngaylapthe.nam);
 }
-// in thong tin ngay
-//oke
+
 void inThongTinNgay(string thongtin, Ngay ngay)
 {
     cout << thongtin << " : " << ngay.ngay << " / " << ngay.thang << " / " << ngay.nam << endl;
 }
 
 // Xem thong tin doc gia
-//oke
 void inDocGia(DocGia dg)
 {
     cout << "Ma: " << dg.ma << endl;
@@ -480,7 +464,6 @@ void inDocGia(DocGia dg)
 }
 
 // 2.1 In danh sach doc gia
-//oke
 void inDanhSachDocGia()
 {
     NodeDocGia *point = headDocGia;
@@ -497,7 +480,6 @@ void inDanhSachDocGia()
 }
 
 //2.2 them doc gia
-//oke
 DocGia themdocgia()
 {
     DocGia d;
@@ -540,7 +522,6 @@ void chucNangThemDocGia()
 }
 
 //2.3 sua thong tin doc gia
-//oke
 void suathongtindocgia(DocGia &d)
 {
     cout << "nhap ten doc gia : ";
@@ -716,7 +697,6 @@ void chucNangTimDocGiaTheoHoTen()
 }
 
 // 3.1 Xem danh sach cac sach trong thu vien
-// Oke
 void xemSachTrongThuVien()
 {
     NodeSach *point = headSach;
@@ -736,7 +716,6 @@ void xemSachTrongThuVien()
 }
 
 // 3.2 them sach
-// Oke
 Sach themsach()
 {
     Sach s;
@@ -786,7 +765,6 @@ void chucNangThemSach()
 }
 
 //3.3 chinh sua thong tin sach
-//oke
 void chinhsuathongtinsach(Sach &s)
 {
     cout << "Nhap lai thong tin sach: " << endl;
@@ -1400,7 +1378,6 @@ void menuAdmin()
         case 12:
             dangXuat();
             return;
-            break;
 
         case 13:
             thaydoimatkhau(*nhanVien);
@@ -1445,42 +1422,53 @@ void menuAdmin()
         case 32:
             chucNangThemSach();
             break;
+
         case 33:
             chucNangChinhSuaThongTinSach();
             break;
+
         case 34:
             xoaThongTinSach();
             break;
+
         case 35:
             chucNangTimKiemSachTheoMa();
             break;
         case 36:
             chucNangTimKiemSachTheoTen();
             break;
+
         case 40:
             lapPhieuMuonSach();
             break;
+
         case 50:
             lapPhieuTraSach();
             break;
         case 61:
             xemSachTrongThuVien();
             break;
+
         case 62:
             chucNangThongKeSoLuongSachTheoTheLoai();
             break;
+
         case 63:
             chucNangThongkeSoLuongDocGia();
             break;
+
         case 64:
             chucNangThongKeSoLuongDocGiaTheoGioiTinh();
             break;
+
         case 65:
             chucNangThongKeSoSachDangMuon();
             break;
+
         case 66:
             chucNangThongKeDocGiaBiTreHan();
             break;
+
         default:
             cout << "Ban nhap khong hop le!\n";
         }
@@ -1526,43 +1514,46 @@ void menuQuanly()
 
         int chon;
         cin >> chon;
+        cin.ignore();
+
         switch (chon)
         {
+        case 0:
+            thoatChuongTrinh();
         case 12:
             dangXuat();
             return;
-            break;
 
         case 13:
-            //Thay doi mat khau
-
+            thaydoimatkhau(*nhanVien);
             break;
 
         case 14:
             capnhatnhanvien(*nhanVien);
             break;
+
         case 21:
             inDanhSachDocGia();
             break;
 
         case 22:
-            themdocgia();
+            chucNangThemDocGia();
             break;
 
         case 23:
-            //Cap nhat thong tin doc gia
+            chucNangSuaThongTinCuaMotDocGia();
             break;
 
         case 24:
-            //Xoa doc gia
+            xoaThongTinDocGia();
             break;
 
         case 25:
-            //Tim kiem theo CMND
+            chucNangTimDocGiaTheoCMND();
             break;
 
         case 26:
-            //Tim kiem theo ho ten
+            chucNangTimDocGiaTheoHoTen();
             break;
 
         case 31:
@@ -1570,47 +1561,61 @@ void menuQuanly()
             break;
 
         case 32:
-            themsach();
+            chucNangThemSach();
             break;
+
         case 33:
-            //Cap nhat thong tin quyen sach
+            chucNangChinhSuaThongTinSach();
             break;
+
         case 34:
             xoaThongTinSach();
             break;
+
         case 35:
-            //Tim kiem theo ISBN
+            chucNangTimKiemSachTheoMa();
             break;
         case 36:
-            //Tim kiem theo ten sach 
+            chucNangTimKiemSachTheoTen();
             break;
+
         case 40:
-            //Lap phieu muon sach
+            lapPhieuMuonSach();
             break;
+
         case 50:
-            //Lap phieu tra sach 
+            lapPhieuTraSach();
             break;
         case 61:
             xemSachTrongThuVien();
             break;
+
         case 62:
-            //Thong ke so luong sach theo loai
+            chucNangThongKeSoLuongSachTheoTheLoai();
             break;
+
         case 63:
             chucNangThongkeSoLuongDocGia();
             break;
+
         case 64:
             chucNangThongKeSoLuongDocGiaTheoGioiTinh();
             break;
+
         case 65:
             chucNangThongKeSoSachDangMuon();
             break;
+
         case 66:
             chucNangThongKeDocGiaBiTreHan();
             break;
+            
         default:
             cout << "Ban nhap khong hop le!\n";
         }
+
+        cin.clear();
+        cin.ignore(INT32_MAX, '\n');
     }
 }
 
@@ -1638,11 +1643,15 @@ void menuChuyenvien()
 
         int chon;
         cin >> chon;
+        cin.ignore();
+
         switch (chon)
         {
+        case 0:
+            thoatChuongTrinh();
         case 12:
             dangXuat();
-            break;
+            return;
 
         case 13:
             thaydoimatkhau(*nhanVien);
@@ -1657,37 +1666,46 @@ void menuChuyenvien()
             break;
 
         case 22:
-            themdocgia();
+            chucNangThemDocGia();
             break;
 
         case 23:
-            //cap nhat thong tin doc gia 
+            chucNangSuaThongTinCuaMotDocGia();
+            break;
 
+        case 24:
+            xoaThongTinDocGia();
             break;
 
         case 25:
-            //tim kiem theo CMND
+            chucNangTimDocGiaTheoCMND();
             break;
 
         case 26:
-            //Tim kiem theo ho ten
+            chucNangTimDocGiaTheoHoTen();
             break;
 
         case 35:
-            //Tim kiem theo ISBN
+            chucNangTimKiemSachTheoMa();
             break;
         case 36:
-            //Tim kiem theo ten sach
+            chucNangTimKiemSachTheoTen();
             break;
-        case 40:    
-            //Lap phieu muon sach
+
+        case 40:
+            lapPhieuMuonSach();
             break;
+
         case 50:
-            //Lap phieu tra sach 
+            lapPhieuTraSach();
             break;
+            
         default:
             cout << "Ban nhap khong hop le!\n";
         }
+
+        cin.clear();
+        cin.ignore(INT32_MAX, '\n');
     }
 }
 
