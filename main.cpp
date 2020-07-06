@@ -12,9 +12,9 @@ using namespace std;
 
 /*-------------------------------------------------------*/
 // Bien toan cuc
-NodeNhanVien  *headNhanVien = NULL;
 NhanVien *nhanVien = NULL;
-// Doc gia
+NodeNhanVien  *headNhanVien = NULL;
+NodeMuonTra *headMuonTra = NULL;
 NodeDocGia *headDocGia = NULL;
 NodeSach *headSach = NULL;
 /*-------------------------------------------------------*/
@@ -87,9 +87,34 @@ void docSachTuFile()
     file.close();
 }
 
+//oke
 void docDocGiaTuFile()
 {
+    //4 1 25 06 1999 2 7 2020 2 7 2021Vo Van Tam,1922215448,vovantam@gmail.com,Hai Lang Quang Tri
+    //ma,gioitinh,ngaysinh,ngaylapthe,ngayhethan,hoten,cmnd,email,diachi
+    ifstream file("docgia.txt");
+    while (!file.eof())
+    {
+       DocGia docgia;
+       file>>docgia.ma;
+       file>>docgia.gioitinh;
+       file>>docgia.ngaysinh.ngay;
+       file>>docgia.ngaysinh.thang;
+       file>>docgia.ngaysinh.nam;
+       file>>docgia.ngaylapthe.ngay;
+       file>>docgia.ngaylapthe.thang;
+       file>>docgia.ngaylapthe.nam;
+       file>>docgia.ngayhethan.ngay;
+       file>>docgia.ngayhethan.thang;
+       file>>docgia.ngayhethan.nam;
+       getline(file, docgia.hoten, ',');
+       getline(file, docgia.cmnd, ',');
+       getline(file, docgia.email, ',');
+       getline(file, docgia.diachi);
 
+       themDocGiaVaoDauNode(docgia);
+    }
+    file.close();
 }
 
 void xoaBoNhoDem()
@@ -122,6 +147,186 @@ void docNhanVienTuFile()
 
         themNhanVienVaoDauNode(nv);
     }
+    file.close();
+}
+
+//oke
+void themPhieuMuonTraVaoDauNode(MuonTra muontra)
+{
+    NodeMuonTra *node = new NodeMuonTra();
+    node->data = muontra;
+    node->next = NULL;
+
+    if (headMuonTra == NULL)
+    {
+        headMuonTra = node;
+    }
+    else
+    {
+        node->next = headMuonTra;
+        headMuonTra = node;
+    }
+}
+
+//oke
+void docPhieuMuonTraTuFile()
+{
+    //2 1 1 2 0 25 6 2020 25 7 2020 28 6 2020
+    ifstream file("muontra.txt");
+    while (!file.eof())
+    {
+        MuonTra muontra;
+        file>>muontra.ma;
+        file>>muontra.madocgia;
+        file>>muontra.masach[0];
+        file>>muontra.masach[1];
+        file>>muontra.masach[2];
+        file>>muontra.ngaymuon.ngay;
+        file>>muontra.ngaymuon.thang;
+        file>>muontra.ngaymuon.nam;
+        file>>muontra.ngaytradukien.ngay;
+        file>>muontra.ngaytradukien.thang;
+        file>>muontra.ngaytradukien.nam;
+        file>>muontra.ngaytrathucte.ngay;
+        file>>muontra.ngaytrathucte.thang;
+        file>>muontra.ngaytrathucte.nam;
+
+        themPhieuMuonTraVaoDauNode(muontra);
+    }
+    file.close();
+}
+
+// in sach ra file
+//oke
+void inSachRaFile()
+{
+    ofstream file("sach.txt");
+
+    NodeSach *point = headSach;
+    while (point != NULL)
+    {
+        Sach sach = point->data;
+        file<<sach.masach<<" ";
+        file<<sach.namxuatban<<" ";
+        file<<sach.giasach<<" ";
+        file<<sach.soluong;
+        file<<sach.tensach<<',';
+        file<<sach.tacgia<<',';
+        file<<sach.nhasanxuat<<',';
+        file<<sach.theloai;   
+
+        point = point->next;
+        if (point != NULL)
+        {
+            file<<endl;
+        }
+        
+    }
+    file.close();
+}
+
+// in doc gia ra file
+//oke
+void inDocGiaRaFile()
+{
+    ofstream file("docgia.txt");
+
+    NodeDocGia *point = headDocGia;
+    while (point != NULL)
+    {
+        DocGia docgia = point->data;
+        file<<docgia.ma<<" ";
+        file<<docgia.gioitinh<<" ";
+        file<<docgia.ngaysinh.ngay<<" ";
+        file<<docgia.ngaysinh.thang<<" ";
+        file<<docgia.ngaysinh.nam<<" ";
+        file<<docgia.ngaylapthe.ngay<<" ";
+        file<<docgia.ngaylapthe.thang<<" ";
+        file<<docgia.ngaylapthe.nam<<" ";
+        file<<docgia.ngayhethan.ngay<<" ";
+        file<<docgia.ngayhethan.thang<<" ";
+        file<<docgia.ngayhethan.nam;
+        file<<docgia.hoten<<',';
+        file<<docgia.cmnd<<',';
+        file<<docgia.email<<',';
+        file<<docgia.diachi;
+
+        point = point->next;
+        if (point != NULL)
+        {
+            file<<endl;
+        }
+    }
+    file.close();
+}
+
+// in nhan vien ra file
+//oke
+void inNhanVienRaFile()
+{
+    ofstream file("nhanvien.txt");
+    
+    NodeNhanVien *point = headNhanVien;
+    while (point != NULL)
+    {
+        NhanVien nv = point->data;
+        file<<nv.id<<" ";
+        file<<nv.loainguoidung<<" ";
+        file<<nv.trangthai<<" ";
+        file<<nv.gioitinh<<" ";
+        file<<nv.ngaysinh.ngay<<" ";
+        file<<nv.ngaysinh.thang<<" ";
+        file<<nv.ngaysinh.nam;
+        file<<nv.tendangnhap<<',';
+        file<<nv.matkhau<<',';
+        file<<nv.hoten<<',';
+        file<<nv.cmnd<<',';
+        file<<nv.diachi;
+
+        point = point->next;
+        if (point != NULL)
+        {
+            file<<endl;
+        }
+    }
+    
+    file.close();
+}
+
+// in phieu muon tra ra file
+//oke
+void inPhieuMuonTraRaFile()
+{
+    ofstream file("muontra.txt");
+
+    NodeMuonTra *point = headMuonTra;
+    while (point != NULL)
+    {
+        MuonTra muontra = point->data;
+
+        file<<muontra.ma<<" ";
+        file<<muontra.madocgia<<" ";
+        file<<muontra.masach[0]<<" ";
+        file<<muontra.masach[1]<<" ";
+        file<<muontra.masach[2]<<" ";
+        file<<muontra.ngaymuon.ngay<<" ";
+        file<<muontra.ngaymuon.thang<<" ";
+        file<<muontra.ngaymuon.nam<<" ";
+        file<<muontra.ngaytradukien.ngay<<" ";
+        file<<muontra.ngaytradukien.thang<<" ";
+        file<<muontra.ngaytradukien.nam<<" ";
+        file<<muontra.ngaytrathucte.ngay<<" ";
+        file<<muontra.ngaytrathucte.thang<<" ";
+        file<<muontra.ngaytrathucte.nam;
+
+        point = point->next;
+        if (point != NULL)
+        {
+            file<<endl;
+        }
+    }
+    
+
     file.close();
 }
 /*-------------------------------------------------------*/
@@ -272,31 +477,15 @@ NhanVien taonhanvien()
 //     }
 // }
 
-// in thng tin ngay
-//oke
-void inThongTinNgay(string thongtin, Ngay ngay) {
-    cout<<thongtin<<": "<<ngay.ngay<<"/"<<ngay.thang<<"/"<<ngay.nam<<endl;
-}
-
-// Xem thong tin doc gia
-//oke
-void inDocGia(DocGia dg) {
-   cout << "Ma: " << dg.ma <<endl;
-   cout << "Ho ten: "<<dg.hoten<<endl;
-   cout<<"CMND: "<<dg.cmnd<<endl;
-    cout<< "Gioi tinh: ";
-    if(dg.gioitinh==1){
-         cout<< "Nam " <<endl;
-    }
-    else{
-         cout<< "Nu " <<endl;
-    }
-   cout<<"Email: "<<dg.email<<endl;
-   cout<<"Dia chi: "<<dg.diachi<<endl;
-
-   inThongTinNgay("Ngay sinh", dg.ngaysinh);
-   inThongTinNgay("Ngay lap the", dg.ngaylapthe);
-   inThongTinNgay("Ngay het han", dg.ngayhethan);
+void inThongTinDocGia(DocGia dg)
+{
+    printf(
+        "%-10d %-30s %02d/%02d/%02d %-10s %02d/%02d/%02d\n",
+        dg.ma,
+        dg.hoten.c_str(),
+        dg.ngaysinh.ngay, dg.ngaysinh.thang, dg.ngaysinh.nam,
+        (dg.gioitinh == 1)? "Nam" : "Nu",
+        dg.ngaylapthe.ngay, dg.ngaylapthe.thang, dg.ngaylapthe.nam);
 }
 
 // 2.1 In danh sach doc gia
@@ -304,13 +493,13 @@ void inDocGia(DocGia dg) {
 void inDanhSachDocGia() 
 {
     NodeDocGia *point = headDocGia;
+    // 4 1 25 06 1999 2 7 2020 2 7 2021Vo Van Tam,1922215448,vovantam@gmail.com,Hai Lang Quang Tri
+    printf("%-10s %-30s %-10s %-10s %s\n", "Ma", "Ho ten", "Ngay sinh", "Gioi tinh", "Ngay lap the");
     
     while (point != NULL)
     {
-        if(point->data.gioitinh == 1){
-            inDocGia(point->data);
-        }
-        
+        DocGia dg = point->data;
+        inThongTinDocGia(dg);
         point = point->next;
     }    
 }
@@ -391,8 +580,9 @@ void suathongtindocgia(DocGia &d)
 }
 
 // 2.4 Xoa thong tin mot doc gia
-bool xoaDocGiaTheoId(NodeDocGia *head, int id) {
+bool xoaDocGiaTheoId(int id) {
     NodeDocGia *point = headDocGia;
+    NodeDocGia *head = headDocGia;
 
     if (point == NULL)
     {
@@ -563,8 +753,23 @@ Sach* timSachTheoTen(string ten)
     return NULL;   
 }
 
-// 4 Lap phieu muon sach
+
 bool muonSach(int masach);
+bool kiemTraDocGia(int ma)
+{
+    NodeDocGia *point = headDocGia;
+    while (point != NULL)
+    {
+        if (point->data.ma == ma)
+        {
+            return true;
+        }
+        point = point->next;
+    }
+    return false;
+}
+
+// 4 Lap phieu muon sach
 void lapPhieuMuonSach()
 {
     /*
@@ -576,8 +781,15 @@ void lapPhieuMuonSach()
     MuonTra muon;
     cout<<"Nhap ma doc gia: ";
     cin>>muon.madocgia;
+
+    if (!kiemTraDocGia(muon.madocgia))
+    {
+        cout<<"Ma doc gia khong hop le!"<<endl;
+        return;
+    }
     
-    for(int i=0; i<10;)
+    
+    for(int i=0; i<3;)
     {
         xemSachTrongThuVien();
         cout<<"Nhap ma sach thu " << i + 1 << " (Nhap 0 de ket thuc): ";
@@ -605,6 +817,24 @@ void lapPhieuMuonSach()
     cin>>muon.ngaymuon.ngay>>muon.ngaymuon.thang>>muon.ngaymuon.nam;
     cout<<"Ngay tra du kiem (dd mm yyyy): ";
     cin>>muon.ngaytradukien.ngay>>muon.ngaytradukien.thang>>muon.ngaytradukien.nam;
+
+    themPhieuMuonTraVaoDauNode(muon);
+}
+
+void inDanhSachPhieuMuonTra()
+{
+
+}
+
+MuonTra* timPhieuMuonTraTheoMa(int ma)
+{
+    return NULL;
+}
+
+// 5.0 Lap phieu tra sach
+void lapPhieuTraSach()
+{
+
 }
 
 // Kiem tra xem ma sach co hop le hoac so luong sach van con
@@ -631,6 +861,15 @@ void initData()
     docSachTuFile();
     docDocGiaTuFile();
     docNhanVienTuFile();
+    docPhieuMuonTraTuFile();
+}
+
+void thoatChuongTrinh()
+{
+    inSachRaFile();
+    inDocGiaRaFile();
+    inNhanVienRaFile();
+    inPhieuMuonTraRaFile();
 }
 
 //6.1
@@ -1203,5 +1442,6 @@ int main()
 {
     initData();
     lapPhieuMuonSach();
+    thoatChuongTrinh();
 }
 /*-------------------------------------------------------*/

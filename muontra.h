@@ -6,8 +6,9 @@ using namespace std;
 
 typedef struct MuonTra
 {
+    int ma = 0;
     int madocgia;
-    int masach[10] = {0};
+    int masach[3] = {0}; // toi da cho muon 3 quyen
     Ngay ngaymuon;
     Ngay ngaytradukien;
     Ngay ngaytrathucte;
