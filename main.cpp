@@ -12,7 +12,7 @@ using namespace std;
 /*-------------------------------------------------------*/
 // Bien toan cuc
 NhanVien *nhanVien = NULL;
-NodeNhanVien  *headNhanVien = NULL;
+NodeNhanVien *headNhanVien = NULL;
 NodeMuonTra *headMuonTra = NULL;
 NodeDocGia *headDocGia = NULL;
 NodeSach *headSach = NULL;
@@ -95,24 +95,24 @@ void docDocGiaTuFile()
     ifstream file("docgia.txt");
     while (!file.eof())
     {
-       DocGia docgia;
-       file>>docgia.ma;
-       file>>docgia.gioitinh;
-       file>>docgia.ngaysinh.ngay;
-       file>>docgia.ngaysinh.thang;
-       file>>docgia.ngaysinh.nam;
-       file>>docgia.ngaylapthe.ngay;
-       file>>docgia.ngaylapthe.thang;
-       file>>docgia.ngaylapthe.nam;
-       file>>docgia.ngayhethan.ngay;
-       file>>docgia.ngayhethan.thang;
-       file>>docgia.ngayhethan.nam;
-       getline(file, docgia.hoten, ',');
-       getline(file, docgia.cmnd, ',');
-       getline(file, docgia.email, ',');
-       getline(file, docgia.diachi);
+        DocGia docgia;
+        file >> docgia.ma;
+        file >> docgia.gioitinh;
+        file >> docgia.ngaysinh.ngay;
+        file >> docgia.ngaysinh.thang;
+        file >> docgia.ngaysinh.nam;
+        file >> docgia.ngaylapthe.ngay;
+        file >> docgia.ngaylapthe.thang;
+        file >> docgia.ngaylapthe.nam;
+        file >> docgia.ngayhethan.ngay;
+        file >> docgia.ngayhethan.thang;
+        file >> docgia.ngayhethan.nam;
+        getline(file, docgia.hoten, ',');
+        getline(file, docgia.cmnd, ',');
+        getline(file, docgia.email, ',');
+        getline(file, docgia.diachi);
 
-       themDocGiaVaoDauNode(docgia);
+        themDocGiaVaoDauNode(docgia);
     }
     file.close();
 }
@@ -176,20 +176,20 @@ void docPhieuMuonTraTuFile()
     while (!file.eof())
     {
         MuonTra muontra;
-        file>>muontra.ma;
-        file>>muontra.madocgia;
-        file>>muontra.masach[0];
-        file>>muontra.masach[1];
-        file>>muontra.masach[2];
-        file>>muontra.ngaymuon.ngay;
-        file>>muontra.ngaymuon.thang;
-        file>>muontra.ngaymuon.nam;
-        file>>muontra.ngaytradukien.ngay;
-        file>>muontra.ngaytradukien.thang;
-        file>>muontra.ngaytradukien.nam;
-        file>>muontra.ngaytrathucte.ngay;
-        file>>muontra.ngaytrathucte.thang;
-        file>>muontra.ngaytrathucte.nam;
+        file >> muontra.ma;
+        file >> muontra.madocgia;
+        file >> muontra.masach[0];
+        file >> muontra.masach[1];
+        file >> muontra.masach[2];
+        file >> muontra.ngaymuon.ngay;
+        file >> muontra.ngaymuon.thang;
+        file >> muontra.ngaymuon.nam;
+        file >> muontra.ngaytradukien.ngay;
+        file >> muontra.ngaytradukien.thang;
+        file >> muontra.ngaytradukien.nam;
+        file >> muontra.ngaytrathucte.ngay;
+        file >> muontra.ngaytrathucte.thang;
+        file >> muontra.ngaytrathucte.nam;
 
         themPhieuMuonTraVaoDauNode(muontra);
     }
@@ -206,21 +206,20 @@ void inSachRaFile()
     while (point != NULL)
     {
         Sach sach = point->data;
-        file<<sach.masach<<" ";
-        file<<sach.namxuatban<<" ";
-        file<<sach.giasach<<" ";
-        file<<sach.soluong;
-        file<<sach.tensach<<',';
-        file<<sach.tacgia<<',';
-        file<<sach.nhasanxuat<<',';
-        file<<sach.theloai;   
+        file << sach.masach << " ";
+        file << sach.namxuatban << " ";
+        file << sach.giasach << " ";
+        file << sach.soluong;
+        file << sach.tensach << ',';
+        file << sach.tacgia << ',';
+        file << sach.nhasanxuat << ',';
+        file << sach.theloai;
 
         point = point->next;
         if (point != NULL)
         {
-            file<<endl;
+            file << endl;
         }
-        
     }
     file.close();
 }
@@ -235,26 +234,26 @@ void inDocGiaRaFile()
     while (point != NULL)
     {
         DocGia docgia = point->data;
-        file<<docgia.ma<<" ";
-        file<<docgia.gioitinh<<" ";
-        file<<docgia.ngaysinh.ngay<<" ";
-        file<<docgia.ngaysinh.thang<<" ";
-        file<<docgia.ngaysinh.nam<<" ";
-        file<<docgia.ngaylapthe.ngay<<" ";
-        file<<docgia.ngaylapthe.thang<<" ";
-        file<<docgia.ngaylapthe.nam<<" ";
-        file<<docgia.ngayhethan.ngay<<" ";
-        file<<docgia.ngayhethan.thang<<" ";
-        file<<docgia.ngayhethan.nam;
-        file<<docgia.hoten<<',';
-        file<<docgia.cmnd<<',';
-        file<<docgia.email<<',';
-        file<<docgia.diachi;
+        file << docgia.ma << " ";
+        file << docgia.gioitinh << " ";
+        file << docgia.ngaysinh.ngay << " ";
+        file << docgia.ngaysinh.thang << " ";
+        file << docgia.ngaysinh.nam << " ";
+        file << docgia.ngaylapthe.ngay << " ";
+        file << docgia.ngaylapthe.thang << " ";
+        file << docgia.ngaylapthe.nam << " ";
+        file << docgia.ngayhethan.ngay << " ";
+        file << docgia.ngayhethan.thang << " ";
+        file << docgia.ngayhethan.nam;
+        file << docgia.hoten << ',';
+        file << docgia.cmnd << ',';
+        file << docgia.email << ',';
+        file << docgia.diachi;
 
         point = point->next;
         if (point != NULL)
         {
-            file<<endl;
+            file << endl;
         }
     }
     file.close();
@@ -265,31 +264,31 @@ void inDocGiaRaFile()
 void inNhanVienRaFile()
 {
     ofstream file("nhanvien.txt");
-    
+
     NodeNhanVien *point = headNhanVien;
     while (point != NULL)
     {
         NhanVien nv = point->data;
-        file<<nv.id<<" ";
-        file<<nv.loainguoidung<<" ";
-        file<<nv.trangthai<<" ";
-        file<<nv.gioitinh<<" ";
-        file<<nv.ngaysinh.ngay<<" ";
-        file<<nv.ngaysinh.thang<<" ";
-        file<<nv.ngaysinh.nam;
-        file<<nv.tendangnhap<<',';
-        file<<nv.matkhau<<',';
-        file<<nv.hoten<<',';
-        file<<nv.cmnd<<',';
-        file<<nv.diachi;
+        file << nv.id << " ";
+        file << nv.loainguoidung << " ";
+        file << nv.trangthai << " ";
+        file << nv.gioitinh << " ";
+        file << nv.ngaysinh.ngay << " ";
+        file << nv.ngaysinh.thang << " ";
+        file << nv.ngaysinh.nam;
+        file << nv.tendangnhap << ',';
+        file << nv.matkhau << ',';
+        file << nv.hoten << ',';
+        file << nv.cmnd << ',';
+        file << nv.diachi;
 
         point = point->next;
         if (point != NULL)
         {
-            file<<endl;
+            file << endl;
         }
     }
-    
+
     file.close();
 }
 
@@ -304,28 +303,27 @@ void inPhieuMuonTraRaFile()
     {
         MuonTra muontra = point->data;
 
-        file<<muontra.ma<<" ";
-        file<<muontra.madocgia<<" ";
-        file<<muontra.masach[0]<<" ";
-        file<<muontra.masach[1]<<" ";
-        file<<muontra.masach[2]<<" ";
-        file<<muontra.ngaymuon.ngay<<" ";
-        file<<muontra.ngaymuon.thang<<" ";
-        file<<muontra.ngaymuon.nam<<" ";
-        file<<muontra.ngaytradukien.ngay<<" ";
-        file<<muontra.ngaytradukien.thang<<" ";
-        file<<muontra.ngaytradukien.nam<<" ";
-        file<<muontra.ngaytrathucte.ngay<<" ";
-        file<<muontra.ngaytrathucte.thang<<" ";
-        file<<muontra.ngaytrathucte.nam;
+        file << muontra.ma << " ";
+        file << muontra.madocgia << " ";
+        file << muontra.masach[0] << " ";
+        file << muontra.masach[1] << " ";
+        file << muontra.masach[2] << " ";
+        file << muontra.ngaymuon.ngay << " ";
+        file << muontra.ngaymuon.thang << " ";
+        file << muontra.ngaymuon.nam << " ";
+        file << muontra.ngaytradukien.ngay << " ";
+        file << muontra.ngaytradukien.thang << " ";
+        file << muontra.ngaytradukien.nam << " ";
+        file << muontra.ngaytrathucte.ngay << " ";
+        file << muontra.ngaytrathucte.thang << " ";
+        file << muontra.ngaytrathucte.nam;
 
         point = point->next;
         if (point != NULL)
         {
-            file<<endl;
+            file << endl;
         }
     }
-    
 
     file.close();
 }
@@ -444,7 +442,7 @@ void inThongTinDocGia(DocGia dg)
         dg.ma,
         dg.hoten.c_str(),
         dg.ngaysinh.ngay, dg.ngaysinh.thang, dg.ngaysinh.nam,
-        (dg.gioitinh == 1)? "Nam" : "Nu",
+        (dg.gioitinh == 1) ? "Nam" : "Nu",
         dg.ngaylapthe.ngay, dg.ngaylapthe.thang, dg.ngaylapthe.nam);
 }
 // in thong tin ngay
@@ -485,7 +483,7 @@ void inDanhSachDocGia()
     NodeDocGia *point = headDocGia;
     // 4 1 25 06 1999 2 7 2020 2 7 2021Vo Van Tam,1922215448,vovantam@gmail.com,Hai Lang Quang Tri
     printf("%-10s %-30s %-10s %-10s %s\n", "Ma", "Ho ten", "Ngay sinh", "Gioi tinh", "Ngay lap the");
-    
+
     while (point != NULL)
     {
         DocGia dg = point->data;
@@ -571,7 +569,12 @@ void suathongtindocgia(DocGia &d)
 }
 
 // 2.4 Xoa thong tin mot doc gia
+<<<<<<< HEAD
 bool xoaDocGiaTheoId(int id) 
+=======
+
+bool xoaDocGiaTheoId(int id)
+>>>>>>> 65f54104a141e260a5296d999d7b045031a8d528
 {
     NodeDocGia *point = headDocGia;
     NodeDocGia *head = headDocGia;
@@ -792,7 +795,6 @@ Sach *timSachTheoTen(string ten)
     return NULL;
 }
 
-
 bool muonSach(int masach);
 bool kiemTraDocGia(int ma)
 {
@@ -818,16 +820,16 @@ void lapPhieuMuonSach()
 
     inDanhSachDocGia();
     MuonTra muon;
-    cout<<"Nhap ma doc gia: ";
-    cin>>muon.madocgia;
+    cout << "Nhap ma doc gia: ";
+    cin >> muon.madocgia;
 
     if (!kiemTraDocGia(muon.madocgia))
     {
-        cout<<"Ma doc gia khong hop le!"<<endl;
+        cout << "Ma doc gia khong hop le!" << endl;
         return;
     }
-    
-    for(int i=0; i<3;)
+
+    for (int i = 0; i < 3;)
     {
         xemSachTrongThuVien();
         cout << "Nhap ma sach thu " << i + 1 << " (Nhap 0 de ket thuc): ";
@@ -850,16 +852,15 @@ void lapPhieuMuonSach()
         }
     }
 
-    
-    cout<<"Nhap ngay muon (dd mm yyyy): ";
-    cin>>muon.ngaymuon.ngay>>muon.ngaymuon.thang>>muon.ngaymuon.nam;
-    cout<<"Ngay tra du kiem (dd mm yyyy): ";
-    cin>>muon.ngaytradukien.ngay>>muon.ngaytradukien.thang>>muon.ngaytradukien.nam;
+    cout << "Nhap ngay muon (dd mm yyyy): ";
+    cin >> muon.ngaymuon.ngay >> muon.ngaymuon.thang >> muon.ngaymuon.nam;
+    cout << "Ngay tra du kiem (dd mm yyyy): ";
+    cin >> muon.ngaytradukien.ngay >> muon.ngaytradukien.thang >> muon.ngaytradukien.nam;
 
     themPhieuMuonTraVaoDauNode(muon);
 }
 
-DocGia* timDocGiaTheoMa(int ma)
+DocGia *timDocGiaTheoMa(int ma)
 {
     NodeDocGia *point = headDocGia;
     while (point != NULL)
@@ -868,10 +869,10 @@ DocGia* timDocGiaTheoMa(int ma)
         {
             return &point->data;
         }
-        
+
         point = point->next;
     }
-    
+
     return NULL;
 }
 
@@ -889,8 +890,11 @@ void inDanhSachPhieuMuonChuaTra()
         {
             ten = dg->hoten;
         }
+<<<<<<< HEAD
         
         point = point->next;
+=======
+>>>>>>> 65f54104a141e260a5296d999d7b045031a8d528
 
         if (muontra.ngaytrathucte.ngay != 0 && muontra.ngaytrathucte.thang != 0 && muontra.ngaytrathucte.nam != 0)
         {
@@ -898,17 +902,21 @@ void inDanhSachPhieuMuonChuaTra()
         }
         
         printf(
+<<<<<<< HEAD
             "%-10d %-10d %-30s %02d/%02d/%02d\n",
             muontra.ma, 
+=======
+            "%-10d %-10d %-30s %02d/%02d%02d\n",
+            muontra.ma,
+>>>>>>> 65f54104a141e260a5296d999d7b045031a8d528
             muontra.madocgia,
             ten.c_str(),
             muontra.ngaymuon.ngay, muontra.ngaymuon.thang, muontra.ngaymuon.nam);
 
     }
-    
 }
 
-MuonTra* timPhieuMuonTraTheoMa(int ma)
+MuonTra *timPhieuMuonTraTheoMa(int ma)
 {
     NodeMuonTra *point = headMuonTra;
     while (point != NULL)
@@ -929,19 +937,18 @@ void lapPhieuTraSach()
 {
     inDanhSachPhieuMuonChuaTra();
     int ma;
-    cout<<"Nhap ma phieu muon: ";
-    cin>>ma;
+    cout << "Nhap ma phieu muon: ";
+    cin >> ma;
 
-    MuonTra* muontra = timPhieuMuonTraTheoMa(ma);
+    MuonTra *muontra = timPhieuMuonTraTheoMa(ma);
     if (muontra == NULL)
     {
-        cout<<"Ban nhap ma khong dung!"<<endl;
+        cout << "Ban nhap ma khong dung!" << endl;
         return;
     }
-    
-    cout<<"Nhap ngay tra (dd mm yyyy): ";
-    cin>>muontra->ngaytrathucte.ngay>>muontra->ngaytrathucte.thang>>muontra->ngaytrathucte.nam;
 
+    cout << "Nhap ngay tra (dd mm yyyy): ";
+    cin >> muontra->ngaytrathucte.ngay >> muontra->ngaytrathucte.thang >> muontra->ngaytrathucte.nam;
 }
 
 // Kiem tra xem ma sach co hop le hoac so luong sach van con
@@ -994,7 +1001,6 @@ int soluongsach()
 
 //6.2 Thong ke so luong sach theo the loai
 
-
 //6.3 THong ke so luong doc gia
 int soluongdocgia()
 {
@@ -1032,11 +1038,6 @@ int thongkesoluongdocgianu()
     return coutd;
 }
 
-void menuQuanly()
-{
-    
-}
-/*
 void menuAdmin()
 {
     while (true)
@@ -1046,21 +1047,131 @@ void menuAdmin()
         cout << "13.Thay doi mat khau : " << endl;
         cout << "14.Cap nhat thong tin ca nhan: " << endl;
         cout << "15.Tao nguoi dung" << endl;
-     
+        cout << "16.Tao nguoi dung" << endl;
+
         cout << "21.Xem danh sach doc gia : " << endl;
         cout << "22.Them doc gia: " << endl;
         cout << "23.Cap nhat thong tin doc gia : " << endl;
         cout << "24:Xoa doc gia:" << endl;
         cout << "25.Tim kiem theo CMND: " << endl;
         cout << "26.Tim kiem theo ho ten : " << endl;
-      
+
         cout << "31.Xem danh sach cac sach trong thu vien  : " << endl;
         cout << "32.Them sach : " << endl;
         cout << "33.Cap nhat thong tin quyen sach : " << endl;
         cout << "34:Xoa quyen sach :" << endl;
         cout << "35.Tim kiem theo ISBN : " << endl;
         cout << "36.Tim kiem theo ten sach : " << endl;
-       
+
+        cout << "40.Lap phieu muon sach" << endl;
+        cout << "50.Lap phieu tra sach" << endl;
+
+        cout << "61.Thong ke cac sach co trong thu vien : " << endl;
+        cout << "62.Thong ke so luong sach theo loai : " << endl;
+        cout << "63.Thong ke so luong doc gia : " << endl;
+        cout << "64:Thong ke so luong doc gia theo gioi tinh  :" << endl;
+        cout << "65.Thong ke sach dang muon: " << endl;
+        cout <<  "66.thong ke doc gia dang bi tre hen : " << endl;
+        cout << "Moi chon chuc nang: " << endl;
+
+        int chon;
+        cin >> chon;
+        switch (chon)
+        {
+        case 12:
+            dangXuat();
+            return;
+            break;
+
+        case 13:
+            thaydoimatkhau(*nhanVien);
+            break;
+
+        case 14:
+            break;
+
+        case 15:
+            break;
+        case 16:
+            break;
+        case 21:
+            break;
+
+        case 22:
+            break;
+
+        case 23:
+            break;
+
+        case 24:
+            break;
+
+        case 25:
+            break;
+
+        case 26:
+            break;
+
+        case 31:
+            break;
+
+        case 32:
+            break;
+        case 33:
+            break;
+        case 34:
+            break;
+        case 35:
+            break;
+        case 36:
+            break;
+        case 40:
+            break;
+        case 50:
+            break;
+        case 61:
+            break;
+        case 62:
+            break;
+        case 63:
+            break;
+        case 64:
+            break;
+        case 65:
+            break;
+        case 66:
+            break;
+        default:
+            cout << "Ban nhap khong hop le!\n";
+        }
+    }
+}
+
+
+void menuQuanly()
+{
+     while (true)
+    {
+        xoaManHinh();
+        cout << "12.Dang xuat: " << endl;
+        cout << "13.Thay doi mat khau : " << endl;
+        cout << "14.Cap nhat thong tin ca nhan: " << endl;
+        
+
+        cout << "21.Xem danh sach doc gia : " << endl;
+        cout << "22.Them doc gia: " << endl;
+        cout << "23.Cap nhat thong tin doc gia : " << endl;
+        cout << "24:Xoa doc gia:" << endl;
+        cout << "25.Tim kiem theo CMND: " << endl;
+        cout << "26.Tim kiem theo ho ten : " << endl;
+
+        cout << "31.Xem danh sach cac sach trong thu vien  : " << endl;
+        cout << "32.Them sach : " << endl;
+        cout << "33.Cap nhat thong tin quyen sach : " << endl;
+        cout << "34:Xoa quyen sach :" << endl;
+        cout << "35.Tim kiem theo ISBN : " << endl;
+        cout << "36.Tim kiem theo ten sach : " << endl;
+
         cout << "40.Lap phieu muon sach" << endl;
         cout << "50.Lap phieu tra sach" << endl;
 
@@ -1071,59 +1182,144 @@ void menuAdmin()
         cout << "65.Thong ke sach dang muon: " << endl;
         cout << "66.thong ke doc gia dang bi tre hen : " << endl;
         cout << "Moi chon chuc nang: " << endl;
-        
+
         int chon;
         cin >> chon;
         switch (chon)
         {
-            case 1:
-                break;
+        case 12:
+            break;
 
-            case 1:
-                break;
+        case 13:
+            break;
 
-            case 1:
-                break;
+        case 14:
+            break;
 
-            case 1:
-                break;
+        case 15:
+            break;
 
-            case 1:
-                break;
+        case 21:
+            break;
 
-            case 1:
-                break;
+        case 22:
+            break;
 
-            case 1:
-                break;
+        case 23:
+            break;
 
-            case 1:
-                break;
+        case 24:
+            break;
 
-            case 1:
-                break;
+        case 25:
+            break;
 
-            case 1:
-                break;
+        case 26:
+            break;
 
-            case 1:
-                break;
+        case 1:
+            break;
 
-            case 1:
-                break;
+        case 31:
+            break;
 
-            case 1:
-                break;
-
-            default:
-                cout<<"Ban nhap khong hop le!\n";
+        case 32:
+            break;
+        case 33:
+            break;
+        case 34:
+            break;
+        case 35:
+            break;
+        case 36:
+            break;
+        case 40:
+            break;
+        case 50:
+            break;
+        case 61:
+            break;
+        case 62:
+            break;
+        case 63:
+            break;
+        case 64:
+            break;
+        case 65:
+            break;
+        case 66:
+            break;
+        default:
+            cout << "Ban nhap khong hop le!\n";
         }
     }
 }
-*/
+
 void menuChuyenvien()
 {
-    
+     while (true)
+    {
+        xoaManHinh();
+        cout << "12.Dang xuat: " << endl;
+        cout << "13.Thay doi mat khau : " << endl;
+        cout << "14.Cap nhat thong tin ca nhan: " << endl;
+        
+
+        cout << "21.Xem danh sach doc gia : " << endl;
+        cout << "22.Them doc gia: " << endl;
+        cout << "23.Cap nhat thong tin doc gia : " << endl;
+        cout << "25.Tim kiem theo CMND: " << endl;
+        cout << "26.Tim kiem theo ho ten : " << endl;
+
+        cout << "35.Tim kiem theo ISBN : " << endl;
+        cout << "36.Tim kiem theo ten sach : " << endl;
+
+        cout << "40.Lap phieu muon sach" << endl;
+        cout << "50.Lap phieu tra sach" << endl;
+
+        cout << "Moi chon chuc nang: " << endl;
+
+        int chon;
+        cin >> chon;
+        switch (chon)
+        {
+        case 12:
+            break;
+
+        case 13:
+            break;
+
+        case 14:
+            break;
+
+
+        case 21:
+            break;
+
+        case 22:
+            break;
+
+        case 23:
+            break;
+
+        case 25:
+            break;
+
+        case 26:
+            break;
+
+        case 35:
+            break;
+        case 36:
+            break;
+        case 40:
+            break;
+        case 50:
+            break;
+        default:
+            cout << "Ban nhap khong hop le!\n";
+        }
+    }
 }
 
 // Ket thuc cac chuc nang
