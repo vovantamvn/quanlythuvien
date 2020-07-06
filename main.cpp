@@ -890,11 +890,8 @@ void inDanhSachPhieuMuonChuaTra()
         {
             ten = dg->hoten;
         }
-<<<<<<< HEAD
         
         point = point->next;
-=======
->>>>>>> 65f54104a141e260a5296d999d7b045031a8d528
 
         if (muontra.ngaytrathucte.ngay != 0 && muontra.ngaytrathucte.thang != 0 && muontra.ngaytrathucte.nam != 0)
         {
@@ -902,13 +899,8 @@ void inDanhSachPhieuMuonChuaTra()
         }
         
         printf(
-<<<<<<< HEAD
             "%-10d %-10d %-30s %02d/%02d/%02d\n",
-            muontra.ma, 
-=======
-            "%-10d %-10d %-30s %02d/%02d%02d\n",
             muontra.ma,
->>>>>>> 65f54104a141e260a5296d999d7b045031a8d528
             muontra.madocgia,
             ten.c_str(),
             muontra.ngaymuon.ngay, muontra.ngaymuon.thang, muontra.ngaymuon.nam);
