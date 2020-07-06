@@ -1240,6 +1240,7 @@ void menuChuyenvien()
         switch (chon)
         {
         case 12:
+            dangXuat();
             break;
 
         case 13:
