@@ -384,7 +384,6 @@ void thaydoimatkhau(NhanVien &nv)
 //update
 void capnhatnhanvien(NhanVien &nv)
 {
-    cout << "Nhap lai thong tin nhan vien : ";
     cout << "nhap ten dang nhap: ";
     getline(cin, nv.tendangnhap);
     cout << "nhap mat khau: ";
@@ -403,8 +402,6 @@ void capnhatnhanvien(NhanVien &nv)
     cin >> nv.gioitinh;
     cout << "nhap tinh trang: ";
     cin >> nv.trangthai;
-
-    xoaBoNhoDem();
 }
 
 //1.5 tao nguoi dung
@@ -414,6 +411,8 @@ NhanVien taonhanvien()
     NhanVien nv;
     cout << "nhap ten dang nhap: ";
     getline(cin, nv.tendangnhap);
+    cout << "nhap ho ten: ";
+    getline(cin, nv.hoten);
     cout << "nhap mat khau: ";
     getline(cin, nv.matkhau);
     cout << "nhap chung minh nhan dan: ";
@@ -430,9 +429,13 @@ NhanVien taonhanvien()
     cin >> nv.ngaysinh.nam;
     cout << "nhap tinh trang (0: block, 1: actived): ";
     cin >> nv.trangthai;
-
-    xoaBoNhoDem();
     return nv;
+}
+
+void chucNangThemNhanVien()
+{
+    NhanVien nv = taonhanvien();
+    themNhanVienVaoDauNode(nv);
 }
 
 void inThongTinDocGia(DocGia dg)
@@ -527,16 +530,19 @@ DocGia themdocgia()
     cin >> d.ngayhethan.thang;
     cout << "nhap nam het han : ";
     cin >> d.ngayhethan.nam;
-
-    xoaBoNhoDem();
     return d;
+}
+
+void chucNangThemDocGia()
+{
+    DocGia docgia = themdocgia();
+    themDocGiaVaoDauNode(docgia);
 }
 
 //2.3 sua thong tin doc gia
 //oke
 void suathongtindocgia(DocGia &d)
 {
-    cout << "Nhap lai thong tin doc gia  : ";
     cout << "nhap ten doc gia : ";
     getline(cin, d.hoten);
     cout << "nhap chung minh nhan dan  : ";
@@ -568,11 +574,31 @@ void suathongtindocgia(DocGia &d)
     cin >> d.ngayhethan.ngay;
 }
 
+// 2.3 Sua thong thong tin doc gia
+DocGia *timDocGiaTheoMa(int ma);
+void chucNangSuaThongTinCuaMotDocGia()
+{
+    inDanhSachDocGia();
+    cout<<"Nhap ma doc gia can sua: ";
+    int ma;
+    cin>>ma;
+    cin.ignore();
+    DocGia *dg = timDocGiaTheoMa(ma);
+    if (dg == NULL)
+    {
+        cout<<"Ma khong hop le!\n";
+    }
+    else
+    {
+        suathongtindocgia(*dg);
+        cout<<"Sua thanh cong!\n";
+    }
+}
+
 // 2.4 Xoa thong tin mot doc gia
 bool xoaDocGiaTheoId(int id)
 {
     NodeDocGia *point = headDocGia;
-    NodeDocGia *head = headDocGia;
 
     if (point == NULL)
     {
@@ -581,7 +607,7 @@ bool xoaDocGiaTheoId(int id)
 
     if (point->data.ma == id)
     {
-        head = head->next;
+        headDocGia = headDocGia->next;
         return true;
     }
 
@@ -593,9 +619,28 @@ bool xoaDocGiaTheoId(int id)
             point->next = tmp;
             return true;
         }
+        point = point->next;
     }
 
     return false;
+}
+
+// 2.4 Xoa thong tin doc gia
+void xoaThongTinDocGia()
+{
+    inDanhSachDocGia();
+    cout<<"Nhap ma doc gia can xoa: ";
+    int ma;
+    cin>>ma;
+    bool ketqua = xoaDocGiaTheoId(ma);
+    if (ketqua)
+    {
+        cout<<"Da xoa doc gia thanh cong!\n";
+    }
+    else
+    {
+        cout<<"Ma khong hop le\n";
+    }
 }
 
 // 2.5 Tim kiem doc gia theo CMND
@@ -615,6 +660,25 @@ DocGia *timDocGiaTheoChungMinhNhanDan(string cmnd)
     return NULL;
 }
 
+// 2.5 Tim doc gia theo chung minh
+void chucNangTimDocGiaTheoCMND()
+{
+    inDanhSachDocGia();
+    string cmnd;
+    cout<<"Nhap CMND can tim: ";
+    getline(cin, cmnd);
+    DocGia *dg = timDocGiaTheoChungMinhNhanDan(cmnd);
+    if (dg == NULL)
+    {
+        cout<<"Khong tim thay!\n";
+    }
+    else
+    {
+        inDocGia(*dg);
+    }
+    
+}
+
 // 2.6 Tim kiem doc gia theo ho ten
 DocGia *timDocGiaTheoHoTen(string ten)
 {
@@ -630,6 +694,25 @@ DocGia *timDocGiaTheoHoTen(string ten)
     }
 
     return NULL;
+}
+
+// 2.6 Tim kiem doc gia theo ho ten
+void chucNangTimDocGiaTheoHoTen()
+{
+    inDanhSachDocGia();
+    string hoten;
+    cout<<"Nhap ho ten can tim: ";
+    getline(cin, hoten);
+    DocGia *dg = timDocGiaTheoHoTen(hoten);
+    if (dg == NULL)
+    {
+        cout<<"Khong tim thay!\n";
+    }
+    else
+    {
+        inDocGia(*dg);
+    }
+    
 }
 
 // 3.1 Xem danh sach cac sach trong thu vien
@@ -696,6 +779,12 @@ void themSachVaoDauNode(Sach sach)
     }
 }
 
+void chucNangThemSach()
+{
+    Sach sach = themsach();
+    themSachVaoDauNode(sach);
+}
+
 //3.3 chinh sua thong tin sach
 //oke
 void chinhsuathongtinsach(Sach &s)
@@ -721,7 +810,6 @@ void chinhsuathongtinsach(Sach &s)
     cin >> s.soluong;
 }
 
-//3.5 Tìm kiếm sách theo ISBN
 Sach *timSachTheoMa(int ma)
 {
     NodeSach *point = headSach;
@@ -736,6 +824,49 @@ Sach *timSachTheoMa(int ma)
     }
 
     return NULL;
+}
+
+void chucNangChinhSuaThongTinSach()
+{
+    xemSachTrongThuVien();
+    cout<<"Nhap ma sach can sua: ";
+    int ma;
+    cin>>ma;
+    cin.ignore();
+
+    Sach *sach = timSachTheoMa(ma);
+    if (sach == NULL)
+    {
+        cout<<"Ma khong hop le!\n";
+    }
+    else
+    {
+        chinhsuathongtinsach(*sach);
+    }
+}
+
+// 3.5 Tìm kiếm sách theo ISBN
+void chucNangTimKiemSachTheoMa()
+{
+    int ma;
+    cout<<"Nhap ma sach can tim: ";
+    cin>>ma;
+    
+    Sach *sach = timSachTheoMa(ma);
+    if (sach == NULL)
+    {
+        cout<<"Ma sach khong tion tai\n";
+    }
+    else
+    {
+        printf("%-10d %-30s %-20s %-20d %-10d\n",
+               sach->masach,
+               sach->tensach.c_str(),
+               sach->tacgia.c_str(),
+               sach->namxuatban,
+               sach->soluong);
+    }
+    
 }
 
 //3.4 Xóa thông tin sách
@@ -788,6 +919,30 @@ Sach *timSachTheoTen(string ten)
     }
 
     return NULL;
+}
+
+// 3.6 Tìm kiếm sách theo tên sách
+void chucNangTimKiemSachTheoTen()
+{
+    int ma;
+    cout<<"Nhap ma sach can tim: ";
+    cin>>ma;
+    
+    Sach *sach = timSachTheoMa(ma);
+    if (sach == NULL)
+    {
+        cout<<"Ma sach khong tion tai\n";
+    }
+    else
+    {
+        printf("%-10d %-30s %-20s %-20d %-10d\n",
+               sach->masach,
+               sach->tensach.c_str(),
+               sach->tacgia.c_str(),
+               sach->namxuatban,
+               sach->soluong);
+    }
+    
 }
 
 bool muonSach(int masach);
@@ -970,6 +1125,7 @@ void thoatChuongTrinh()
     inDocGiaRaFile();
     inNhanVienRaFile();
     inPhieuMuonTraRaFile();
+    exit(0);
 }
 
 //6.1  thong ke so luong sach trong thu vien
@@ -1141,6 +1297,7 @@ void menuAdmin()
     while (true)
     {
         xoaManHinh();
+        cout << " 0.Thoat chuong trinh"<<endl;
         cout << "12.Dang xuat: " << endl;
         cout << "13.Thay doi mat khau : " << endl;
         cout << "14.Cap nhat thong tin ca nhan: " << endl;
@@ -1174,8 +1331,12 @@ void menuAdmin()
 
         int chon;
         cin >> chon;
+        cin.ignore();
+
         switch (chon)
         {
+        case 0:
+            thoatChuongTrinh();
         case 12:
             dangXuat();
             return;
@@ -1190,31 +1351,31 @@ void menuAdmin()
             break;
 
         case 15:
-            taonhanvien();
+            chucNangThemNhanVien();
             break;
-        case 16:
 
-            break;
         case 21:
             inDanhSachDocGia();
             break;
 
         case 22:
-            themdocgia();
+            chucNangThemDocGia();
             break;
 
         case 23:
-
+            chucNangSuaThongTinCuaMotDocGia();
             break;
 
         case 24:
-
+            xoaThongTinDocGia();
             break;
 
         case 25:
+            chucNangTimDocGiaTheoCMND();
             break;
 
         case 26:
+            chucNangTimDocGiaTheoHoTen();
             break;
 
         case 31:
@@ -1222,7 +1383,7 @@ void menuAdmin()
             break;
 
         case 32:
-            themsach();
+            chucNangThemSach();
             break;
         case 33:
             break;
@@ -1251,6 +1412,9 @@ void menuAdmin()
         default:
             cout << "Ban nhap khong hop le!\n";
         }
+
+        cin.clear();
+        cin.ignore(INT32_MAX, '\n');
     }
 }
 
