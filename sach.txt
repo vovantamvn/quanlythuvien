@@ -1,3 +1,4 @@
+4 2010 200000 299Sach day lam giau,Le Quy Don,2010,Sach lam giau
 3 1997 200000 180De meo phieu luu ki 3,Ngo Bao Trung,Nha xuat ban puong duong,Sach toan
 2 1997 200000 190De meo phieu luu ki 2,Ngo Bao Trung,Nha xuat ban puong duong,Sach van
-1 1997 200000 98De meo phieu luu ki 1,Ngo Bao Trung,Nha xuat ban puong duong,Sach giai
+1 1997 200000 97De meo phieu luu ki 1,Ngo Bao Trung,Nha xuat ban puong duong,Sach giai
